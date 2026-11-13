@@ -1,0 +1,13 @@
+.venv/
+data/raw/
+data/*.jsonl
+data/*.log
+__pycache__/
+*.pyc
+/bench/real-shots/
+
+.DS_Store
+data/*.npz
+
+deploy.env
+/dist/

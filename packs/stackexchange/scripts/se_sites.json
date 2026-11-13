@@ -1,0 +1,2192 @@
+{
+"stackoverflow.com": {
+"name": "Stack Overflow",
+"api": "stackoverflow",
+"audience": "professional and enthusiast programmers",
+"type": "main_site"
+},
+"serverfault.com": {
+"name": "Server Fault",
+"api": "serverfault",
+"audience": "system and network administrators",
+"type": "main_site"
+},
+"superuser.com": {
+"name": "Super User",
+"api": "superuser",
+"audience": "computer enthusiasts and power users",
+"type": "main_site"
+},
+"meta.stackexchange.com": {
+"name": "Meta Stack Exchange",
+"api": "meta",
+"audience": "meta-discussion of the Stack Exchange family of Q&A websites",
+"type": "main_site"
+},
+"webapps.stackexchange.com": {
+"name": "Web Applications",
+"api": "webapps",
+"audience": "power users of web applications",
+"type": "main_site"
+},
+"webapps.meta.stackexchange.com": {
+"name": "Web Applications Meta",
+"api": "webapps.meta",
+"audience": "power users of web applications",
+"type": "meta_site"
+},
+"gaming.stackexchange.com": {
+"name": "Arqade",
+"api": "gaming",
+"audience": "passionate videogamers on all platforms",
+"type": "main_site"
+},
+"gaming.meta.stackexchange.com": {
+"name": "Arqade Meta",
+"api": "gaming.meta",
+"audience": "passionate videogamers on all platforms",
+"type": "meta_site"
+},
+"webmasters.stackexchange.com": {
+"name": "Webmasters",
+"api": "webmasters",
+"audience": "webmasters",
+"type": "main_site"
+},
+"webmasters.meta.stackexchange.com": {
+"name": "Webmasters Meta",
+"api": "webmasters.meta",
+"audience": "webmasters",
+"type": "meta_site"
+},
+"cooking.stackexchange.com": {
+"name": "Seasoned Advice",
+"api": "cooking",
+"audience": "professional and amateur chefs",
+"type": "main_site"
+},
+"cooking.meta.stackexchange.com": {
+"name": "Seasoned Advice Meta",
+"api": "cooking.meta",
+"audience": "professional and amateur chefs",
+"type": "meta_site"
+},
+"gamedev.stackexchange.com": {
+"name": "Game Development",
+"api": "gamedev",
+"audience": "professional and independent game developers",
+"type": "main_site"
+},
+"gamedev.meta.stackexchange.com": {
+"name": "Game Development Meta",
+"api": "gamedev.meta",
+"audience": "professional and independent game developers",
+"type": "meta_site"
+},
+"photo.stackexchange.com": {
+"name": "Photography",
+"api": "photo",
+"audience": "professional, enthusiast and amateur photographers",
+"type": "main_site"
+},
+"photo.meta.stackexchange.com": {
+"name": "Photography Meta",
+"api": "photo.meta",
+"audience": "professional, enthusiast and amateur photographers",
+"type": "meta_site"
+},
+"stats.stackexchange.com": {
+"name": "Cross Validated",
+"api": "stats",
+"audience": "people interested in statistics, machine learning, data analysis, data mining, and data visualization",
+"type": "main_site"
+},
+"stats.meta.stackexchange.com": {
+"name": "Cross Validated Meta",
+"api": "stats.meta",
+"audience": "people interested in statistics, machine learning, data analysis, data mining, and data visualization",
+"type": "meta_site"
+},
+"math.stackexchange.com": {
+"name": "Mathematics",
+"api": "math",
+"audience": "people studying math at any level and professionals in related fields",
+"type": "main_site"
+},
+"math.meta.stackexchange.com": {
+"name": "Mathematics Meta",
+"api": "math.meta",
+"audience": "people studying math at any level and professionals in related fields",
+"type": "meta_site"
+},
+"diy.stackexchange.com": {
+"name": "Home Improvement",
+"api": "diy",
+"audience": "contractors and serious DIYers",
+"type": "main_site"
+},
+"diy.meta.stackexchange.com": {
+"name": "Home Improvement Meta",
+"api": "diy.meta",
+"audience": "contractors and serious DIYers",
+"type": "meta_site"
+},
+"meta.superuser.com": {
+"name": "Meta Super User",
+"api": "meta.superuser",
+"audience": "computer enthusiasts and power users",
+"type": "meta_site"
+},
+"meta.serverfault.com": {
+"name": "Meta Server Fault",
+"api": "meta.serverfault",
+"audience": "system and network administrators",
+"type": "meta_site"
+},
+"gis.stackexchange.com": {
+"name": "Geographic Information Systems",
+"api": "gis",
+"audience": "cartographers, geographers and GIS professionals",
+"type": "main_site"
+},
+"gis.meta.stackexchange.com": {
+"name": "Geographic Information Systems Meta",
+"api": "gis.meta",
+"audience": "cartographers, geographers and GIS professionals",
+"type": "meta_site"
+},
+"tex.stackexchange.com": {
+"name": "TeX - LaTeX",
+"api": "tex",
+"audience": "users of TeX, LaTeX, ConTeXt, and related typesetting systems",
+"type": "main_site"
+},
+"tex.meta.stackexchange.com": {
+"name": "TeX - LaTeX Meta",
+"api": "tex.meta",
+"audience": "users of TeX, LaTeX, ConTeXt, and related typesetting systems",
+"type": "meta_site"
+},
+"askubuntu.com": {
+"name": "Ask Ubuntu",
+"api": "askubuntu",
+"audience": "Ubuntu users and developers",
+"type": "main_site"
+},
+"meta.askubuntu.com": {
+"name": "Ask Ubuntu Meta",
+"api": "meta.askubuntu",
+"audience": "Ubuntu users and developers",
+"type": "meta_site"
+},
+"money.stackexchange.com": {
+"name": "Personal Finance & Money",
+"api": "money",
+"audience": "people who want to be financially literate",
+"type": "main_site"
+},
+"money.meta.stackexchange.com": {
+"name": "Personal Finance & Money Meta",
+"api": "money.meta",
+"audience": "people who want to be financially literate",
+"type": "meta_site"
+},
+"english.stackexchange.com": {
+"name": "English Language & Usage",
+"api": "english",
+"audience": "linguists, etymologists, and serious English language enthusiasts",
+"type": "main_site"
+},
+"english.meta.stackexchange.com": {
+"name": "English Language & Usage Meta",
+"api": "english.meta",
+"audience": "linguists, etymologists, and serious English language enthusiasts",
+"type": "meta_site"
+},
+"stackapps.com": {
+"name": "Stack Apps",
+"api": "stackapps",
+"audience": "apps, scripts, and development with the Stack Exchange API",
+"type": "main_site"
+},
+"ux.stackexchange.com": {
+"name": "User Experience",
+"api": "ux",
+"audience": "user experience researchers and experts",
+"type": "main_site"
+},
+"ux.meta.stackexchange.com": {
+"name": "User Experience Meta",
+"api": "ux.meta",
+"audience": "user experience researchers and experts",
+"type": "meta_site"
+},
+"unix.stackexchange.com": {
+"name": "Unix & Linux",
+"api": "unix",
+"audience": "users of Linux, FreeBSD and other Un*x-like operating systems",
+"type": "main_site"
+},
+"unix.meta.stackexchange.com": {
+"name": "Unix & Linux Meta",
+"api": "unix.meta",
+"audience": "users of Linux, FreeBSD and other Un*x-like operating systems",
+"type": "meta_site"
+},
+"wordpress.stackexchange.com": {
+"name": "WordPress Development",
+"api": "wordpress",
+"audience": "WordPress developers and administrators",
+"type": "main_site"
+},
+"wordpress.meta.stackexchange.com": {
+"name": "WordPress Development Meta",
+"api": "wordpress.meta",
+"audience": "WordPress developers and administrators",
+"type": "meta_site"
+},
+"cstheory.stackexchange.com": {
+"name": "Theoretical Computer Science",
+"api": "cstheory",
+"audience": "theoretical computer scientists and researchers in related fields",
+"type": "main_site"
+},
+"cstheory.meta.stackexchange.com": {
+"name": "Theoretical Computer Science Meta",
+"api": "cstheory.meta",
+"audience": "theoretical computer scientists and researchers in related fields",
+"type": "meta_site"
+},
+"apple.stackexchange.com": {
+"name": "Ask Different",
+"api": "apple",
+"audience": "power users of Apple hardware and software",
+"type": "main_site"
+},
+"apple.meta.stackexchange.com": {
+"name": "Ask Different Meta",
+"api": "apple.meta",
+"audience": "power users of Apple hardware and software",
+"type": "meta_site"
+},
+"rpg.stackexchange.com": {
+"name": "Role-playing Games",
+"api": "rpg",
+"audience": "gamemasters and players of tabletop, paper-and-pencil role-playing games",
+"type": "main_site"
+},
+"rpg.meta.stackexchange.com": {
+"name": "Role-playing Games Meta",
+"api": "rpg.meta",
+"audience": "gamemasters and players of tabletop, paper-and-pencil role-playing games",
+"type": "meta_site"
+},
+"bicycles.stackexchange.com": {
+"name": "Bicycles",
+"api": "bicycles",
+"audience": "people who build and repair bicycles, people who train cycling, or commute on bicycles",
+"type": "main_site"
+},
+"bicycles.meta.stackexchange.com": {
+"name": "Bicycles Meta",
+"api": "bicycles.meta",
+"audience": "people who build and repair bicycles, people who train cycling, or commute on bicycles",
+"type": "meta_site"
+},
+"softwareengineering.stackexchange.com": {
+"name": "Software Engineering",
+"api": "softwareengineering",
+"audience": "professionals, academics, and students working within the systems development life cycle",
+"type": "main_site"
+},
+"softwareengineering.meta.stackexchange.com": {
+"name": "Software Engineering Meta",
+"api": "softwareengineering.meta",
+"audience": "professionals, academics, and students working within the systems development life cycle",
+"type": "meta_site"
+},
+"electronics.stackexchange.com": {
+"name": "Electrical Engineering",
+"api": "electronics",
+"audience": "electronics and electrical engineering professionals, students, and enthusiasts",
+"type": "main_site"
+},
+"electronics.meta.stackexchange.com": {
+"name": "Electrical Engineering Meta",
+"api": "electronics.meta",
+"audience": "electronic hardware hacking enthusiasts",
+"type": "meta_site"
+},
+"android.stackexchange.com": {
+"name": "Android Enthusiasts",
+"api": "android",
+"audience": "enthusiasts and power users of the Android operating system",
+"type": "main_site"
+},
+"android.meta.stackexchange.com": {
+"name": "Android Enthusiasts Meta",
+"api": "android.meta",
+"audience": "enthusiasts and power users of the Android operating system",
+"type": "meta_site"
+},
+"boardgames.stackexchange.com": {
+"name": "Board & Card Games",
+"api": "boardgames",
+"audience": "people who like playing board games, designing board games or modifying the rules of existing board games",
+"type": "main_site"
+},
+"boardgames.meta.stackexchange.com": {
+"name": "Board & Card Games Meta",
+"api": "boardgames.meta",
+"audience": "people who like playing board games, designing board games or modifying the rules of existing board games",
+"type": "meta_site"
+},
+"physics.stackexchange.com": {
+"name": "Physics",
+"api": "physics",
+"audience": "active researchers, academics and students of physics",
+"type": "main_site"
+},
+"physics.meta.stackexchange.com": {
+"name": "Physics Meta",
+"api": "physics.meta",
+"audience": "active researchers, academics and students of physics",
+"type": "meta_site"
+},
+"homebrew.stackexchange.com": {
+"name": "Homebrewing",
+"api": "homebrew",
+"audience": "dedicated home brewers and serious enthusiasts",
+"type": "main_site"
+},
+"homebrew.meta.stackexchange.com": {
+"name": "Homebrewing Meta",
+"api": "homebrew.meta",
+"audience": "dedicated home brewers and serious enthusiasts",
+"type": "meta_site"
+},
+"security.stackexchange.com": {
+"name": "Information Security",
+"api": "security",
+"audience": "information security professionals",
+"type": "main_site"
+},
+"security.meta.stackexchange.com": {
+"name": "Information Security Meta",
+"api": "security.meta",
+"audience": "information security professionals",
+"type": "meta_site"
+},
+"writing.stackexchange.com": {
+"name": "Writing",
+"api": "writing",
+"audience": "the craft of professional writing, including fiction, non-fiction, technical, scholarly, and commercial writing",
+"type": "main_site"
+},
+"writing.meta.stackexchange.com": {
+"name": "Writing Meta",
+"api": "writing.meta",
+"audience": "the craft of professional writing, including fiction, non-fiction, technical, scholarly, and commercial writing",
+"type": "meta_site"
+},
+"video.stackexchange.com": {
+"name": "Video Production",
+"api": "video",
+"audience": "engineers, producers, editors, and enthusiasts spanning the fields of video, and media creation",
+"type": "main_site"
+},
+"video.meta.stackexchange.com": {
+"name": "Video Production Meta",
+"api": "video.meta",
+"audience": "engineers, producers, editors, and enthusiasts spanning the fields of video, and media creation",
+"type": "meta_site"
+},
+"graphicdesign.stackexchange.com": {
+"name": "Graphic Design",
+"api": "graphicdesign",
+"audience": "Graphic Design professionals, students, and enthusiasts",
+"type": "main_site"
+},
+"graphicdesign.meta.stackexchange.com": {
+"name": "Graphic Design Meta",
+"api": "graphicdesign.meta",
+"audience": "Graphic Design professionals, students, and enthusiasts",
+"type": "meta_site"
+},
+"dba.stackexchange.com": {
+"name": "Database Administrators",
+"api": "dba",
+"audience": "database professionals who wish to improve their database skills and learn from others in the community",
+"type": "main_site"
+},
+"dba.meta.stackexchange.com": {
+"name": "Database Administrators Meta",
+"api": "dba.meta",
+"audience": "database professionals who wish to improve their database skills and learn from others in the community",
+"type": "meta_site"
+},
+"scifi.stackexchange.com": {
+"name": "Science Fiction & Fantasy",
+"api": "scifi",
+"audience": "science fiction and fantasy enthusiasts",
+"type": "main_site"
+},
+"scifi.meta.stackexchange.com": {
+"name": "Science Fiction & Fantasy Meta",
+"api": "scifi.meta",
+"audience": "science fiction and fantasy enthusiasts",
+"type": "meta_site"
+},
+"codereview.stackexchange.com": {
+"name": "Code Review",
+"api": "codereview",
+"audience": "peer programmer code reviews",
+"type": "main_site"
+},
+"codereview.meta.stackexchange.com": {
+"name": "Code Review Meta",
+"api": "codereview.meta",
+"audience": "peer programmer code reviews",
+"type": "meta_site"
+},
+"codegolf.stackexchange.com": {
+"name": "Code Golf",
+"api": "codegolf",
+"audience": "programming puzzle enthusiasts and code golfers",
+"type": "main_site"
+},
+"codegolf.meta.stackexchange.com": {
+"name": "Code Golf Meta",
+"api": "codegolf.meta",
+"audience": "programming puzzle enthusiasts and code golfers",
+"type": "meta_site"
+},
+"quant.stackexchange.com": {
+"name": "Quantitative Finance",
+"api": "quant",
+"audience": "finance professionals and academics",
+"type": "main_site"
+},
+"quant.meta.stackexchange.com": {
+"name": "Quantitative Finance Meta",
+"api": "quant.meta",
+"audience": "finance professionals and academics",
+"type": "meta_site"
+},
+"pm.stackexchange.com": {
+"name": "Project Management",
+"api": "pm",
+"audience": "project managers",
+"type": "main_site"
+},
+"pm.meta.stackexchange.com": {
+"name": "Project Management Meta",
+"api": "pm.meta",
+"audience": "project managers",
+"type": "meta_site"
+},
+"skeptics.stackexchange.com": {
+"name": "Skeptics",
+"api": "skeptics",
+"audience": "scientific skepticism",
+"type": "main_site"
+},
+"skeptics.meta.stackexchange.com": {
+"name": "Skeptics Meta",
+"api": "skeptics.meta",
+"audience": "scientific skepticism",
+"type": "meta_site"
+},
+"fitness.stackexchange.com": {
+"name": "Physical Fitness",
+"api": "fitness",
+"audience": "physical fitness professionals, athletes, trainers, and those providing health-related needs",
+"type": "main_site"
+},
+"fitness.meta.stackexchange.com": {
+"name": "Physical Fitness Meta",
+"api": "fitness.meta",
+"audience": "physical fitness professionals, athletes, trainers, and those providing health-related needs",
+"type": "meta_site"
+},
+"drupal.stackexchange.com": {
+"name": "Drupal Answers",
+"api": "drupal",
+"audience": "Drupal developers and administrators",
+"type": "main_site"
+},
+"drupal.meta.stackexchange.com": {
+"name": "Drupal Answers Meta",
+"api": "drupal.meta",
+"audience": "Drupal developers and administrators",
+"type": "meta_site"
+},
+"mechanics.stackexchange.com": {
+"name": "Motor Vehicle Maintenance & Repair",
+"api": "mechanics",
+"audience": "mechanics and DIY enthusiast owners of cars, trucks, and motorcycles",
+"type": "main_site"
+},
+"mechanics.meta.stackexchange.com": {
+"name": "Motor Vehicle Maintenance & Repair Meta",
+"api": "mechanics.meta",
+"audience": "mechanics and DIY enthusiast owners of cars, trucks, and motorcycles",
+"type": "meta_site"
+},
+"parenting.stackexchange.com": {
+"name": "Parenting",
+"api": "parenting",
+"audience": "parents, grandparents, nannies and others with a parenting role",
+"type": "main_site"
+},
+"parenting.meta.stackexchange.com": {
+"name": "Parenting Meta",
+"api": "parenting.meta",
+"audience": "parents, grandparents, nannies and others with a parenting role",
+"type": "meta_site"
+},
+"sharepoint.stackexchange.com": {
+"name": "SharePoint",
+"api": "sharepoint",
+"audience": "SharePoint enthusiasts",
+"type": "main_site"
+},
+"sharepoint.meta.stackexchange.com": {
+"name": "SharePoint Meta",
+"api": "sharepoint.meta",
+"audience": "SharePoint enthusiasts",
+"type": "meta_site"
+},
+"music.stackexchange.com": {
+"name": "Music: Practice & Theory",
+"api": "music",
+"audience": "musicians, students, and enthusiasts",
+"type": "main_site"
+},
+"music.meta.stackexchange.com": {
+"name": "Music: Practice & Theory Meta",
+"api": "music.meta",
+"audience": "musicians, students, and enthusiasts",
+"type": "meta_site"
+},
+"sqa.stackexchange.com": {
+"name": "Software Quality Assurance & Testing",
+"api": "sqa",
+"audience": "software quality control experts, automation engineers, and software testers",
+"type": "main_site"
+},
+"sqa.meta.stackexchange.com": {
+"name": "Software Quality Assurance & Testing Meta",
+"api": "sqa.meta",
+"audience": "software quality control experts, automation engineers, and software testers",
+"type": "meta_site"
+},
+"judaism.stackexchange.com": {
+"name": "Mi Yodeya",
+"api": "judaism",
+"audience": "those who base their lives on Jewish law and tradition and anyone interested in learning more",
+"type": "main_site"
+},
+"judaism.meta.stackexchange.com": {
+"name": "Mi Yodeya Meta",
+"api": "judaism.meta",
+"audience": "those who base their lives on Jewish law and tradition and anyone interested in learning more",
+"type": "meta_site"
+},
+"german.stackexchange.com": {
+"name": "German Language",
+"api": "german",
+"audience": "speakers of German wanting to discuss the finer points of the language and translation",
+"type": "main_site"
+},
+"german.meta.stackexchange.com": {
+"name": "German Language Meta",
+"api": "german.meta",
+"audience": "speakers of German wanting to discuss the finer points of the language and translation",
+"type": "meta_site"
+},
+"japanese.stackexchange.com": {
+"name": "Japanese Language",
+"api": "japanese",
+"audience": "students, teachers, and linguists wanting to discuss the finer points of the Japanese language",
+"type": "main_site"
+},
+"japanese.meta.stackexchange.com": {
+"name": "Japanese Language Meta",
+"api": "japanese.meta",
+"audience": "students, teachers, and linguists wanting to discuss the finer points of the Japanese language",
+"type": "meta_site"
+},
+"philosophy.stackexchange.com": {
+"name": "Philosophy",
+"api": "philosophy",
+"audience": "those interested in the study of the fundamental nature of knowledge, reality, and existence",
+"type": "main_site"
+},
+"philosophy.meta.stackexchange.com": {
+"name": "Philosophy Meta",
+"api": "philosophy.meta",
+"audience": "those interested in the study of the fundamental nature of knowledge, reality, and existence",
+"type": "meta_site"
+},
+"gardening.stackexchange.com": {
+"name": "Gardening & Landscaping",
+"api": "gardening",
+"audience": "gardeners and landscapers",
+"type": "main_site"
+},
+"gardening.meta.stackexchange.com": {
+"name": "Gardening & Landscaping Meta",
+"api": "gardening.meta",
+"audience": "gardeners and landscapers",
+"type": "meta_site"
+},
+"travel.stackexchange.com": {
+"name": "Travel",
+"api": "travel",
+"audience": "road warriors and seasoned travelers",
+"type": "main_site"
+},
+"travel.meta.stackexchange.com": {
+"name": "Travel Meta",
+"api": "travel.meta",
+"audience": "road warriors and seasoned travelers",
+"type": "meta_site"
+},
+"crypto.stackexchange.com": {
+"name": "Cryptography",
+"api": "crypto",
+"audience": "software developers, mathematicians and others interested in cryptography",
+"type": "main_site"
+},
+"crypto.meta.stackexchange.com": {
+"name": "Cryptography Meta",
+"api": "crypto.meta",
+"audience": "software developers, mathematicians and others interested in cryptography",
+"type": "meta_site"
+},
+"dsp.stackexchange.com": {
+"name": "Signal Processing",
+"api": "dsp",
+"audience": "practitioners of the art and science of signal, image and video processing",
+"type": "main_site"
+},
+"dsp.meta.stackexchange.com": {
+"name": "Signal Processing Meta",
+"api": "dsp.meta",
+"audience": "practitioners of the art and science of signal, image and video processing",
+"type": "meta_site"
+},
+"french.stackexchange.com": {
+"name": "French Language",
+"api": "french",
+"audience": "students, teachers, and linguists wanting to discuss the finer points of the French language",
+"type": "main_site"
+},
+"french.meta.stackexchange.com": {
+"name": "French Language Meta",
+"api": "french.meta",
+"audience": "students, teachers, and linguists wanting to discuss the finer points of the French language",
+"type": "meta_site"
+},
+"christianity.stackexchange.com": {
+"name": "Christianity",
+"api": "christianity",
+"audience": "committed Christians, experts in Christianity and those interested in learning more",
+"type": "main_site"
+},
+"christianity.meta.stackexchange.com": {
+"name": "Christianity Meta",
+"api": "christianity.meta",
+"audience": "committed Christians, experts in Christianity and those interested in learning more",
+"type": "meta_site"
+},
+"bitcoin.stackexchange.com": {
+"name": "Bitcoin",
+"api": "bitcoin",
+"audience": "Bitcoin users, developers, and enthusiasts",
+"type": "main_site"
+},
+"bitcoin.meta.stackexchange.com": {
+"name": "Bitcoin Meta",
+"api": "bitcoin.meta",
+"audience": "Bitcoin users, developers, and enthusiasts",
+"type": "meta_site"
+},
+"linguistics.stackexchange.com": {
+"name": "Linguistics",
+"api": "linguistics",
+"audience": "professional linguists and others with an interest in linguistic research and theory",
+"type": "main_site"
+},
+"linguistics.meta.stackexchange.com": {
+"name": "Linguistics Meta",
+"api": "linguistics.meta",
+"audience": "professional linguists and others with an interest in linguistic research and theory",
+"type": "meta_site"
+},
+"hermeneutics.stackexchange.com": {
+"name": "Biblical Hermeneutics",
+"api": "hermeneutics",
+"audience": "professors, theologians, and those interested in exegetical analysis of biblical texts",
+"type": "main_site"
+},
+"hermeneutics.meta.stackexchange.com": {
+"name": "Biblical Hermeneutics Meta",
+"api": "hermeneutics.meta",
+"audience": "professors, theologians, and those interested in exegetical analysis of biblical texts",
+"type": "meta_site"
+},
+"history.stackexchange.com": {
+"name": "History",
+"api": "history",
+"audience": "historians and history buffs",
+"type": "main_site"
+},
+"history.meta.stackexchange.com": {
+"name": "History Meta",
+"api": "history.meta",
+"audience": "historians and history buffs",
+"type": "meta_site"
+},
+"bricks.stackexchange.com": {
+"name": "Bricks",
+"api": "bricks",
+"audience": "LEGO® and building block enthusiasts",
+"type": "main_site"
+},
+"bricks.meta.stackexchange.com": {
+"name": "Bricks Meta",
+"api": "bricks.meta",
+"audience": "LEGO® and building block enthusiasts",
+"type": "meta_site"
+},
+"spanish.stackexchange.com": {
+"name": "Spanish Language",
+"api": "spanish",
+"audience": "linguists, teachers, students and Spanish language enthusiasts in general wanting to discuss the finer points of the language",
+"type": "main_site"
+},
+"spanish.meta.stackexchange.com": {
+"name": "Spanish Language Meta",
+"api": "spanish.meta",
+"audience": "linguists, teachers, students and Spanish language enthusiasts in general wanting to discuss the finer points of the language",
+"type": "meta_site"
+},
+"scicomp.stackexchange.com": {
+"name": "Computational Science",
+"api": "scicomp",
+"audience": "scientists using computers to solve scientific problems",
+"type": "main_site"
+},
+"scicomp.meta.stackexchange.com": {
+"name": "Computational Science Meta",
+"api": "scicomp.meta",
+"audience": "scientists using computers to solve scientific problems",
+"type": "meta_site"
+},
+"movies.stackexchange.com": {
+"name": "Movies & TV",
+"api": "movies",
+"audience": "movie and TV enthusiasts",
+"type": "main_site"
+},
+"movies.meta.stackexchange.com": {
+"name": "Movies & TV Meta",
+"api": "movies.meta",
+"audience": "movie and TV enthusiasts",
+"type": "meta_site"
+},
+"chinese.stackexchange.com": {
+"name": "Chinese Language",
+"api": "chinese",
+"audience": "students, teachers, and linguists wanting to discuss the finer points of the Chinese language",
+"type": "main_site"
+},
+"chinese.meta.stackexchange.com": {
+"name": "Chinese Language Meta",
+"api": "chinese.meta",
+"audience": "students, teachers, and linguists wanting to discuss the finer points of the Chinese language",
+"type": "meta_site"
+},
+"biology.stackexchange.com": {
+"name": "Biology",
+"api": "biology",
+"audience": "biology researchers, academics, and students",
+"type": "main_site"
+},
+"biology.meta.stackexchange.com": {
+"name": "Biology Meta",
+"api": "biology.meta",
+"audience": "biology researchers, academics, and students",
+"type": "meta_site"
+},
+"poker.stackexchange.com": {
+"name": "Poker",
+"api": "poker",
+"audience": "serious players and enthusiasts of poker",
+"type": "main_site"
+},
+"poker.meta.stackexchange.com": {
+"name": "Poker Meta",
+"api": "poker.meta",
+"audience": "serious players and enthusiasts of poker",
+"type": "meta_site"
+},
+"mathematica.stackexchange.com": {
+"name": "Mathematica",
+"api": "mathematica",
+"audience": "users of Wolfram Mathematica",
+"type": "main_site"
+},
+"mathematica.meta.stackexchange.com": {
+"name": "Mathematica Meta",
+"api": "mathematica.meta",
+"audience": "users of Wolfram Mathematica",
+"type": "meta_site"
+},
+"psychology.stackexchange.com": {
+"name": "Psychology & Neuroscience",
+"api": "psychology",
+"audience": "practitioners, researchers, and students in cognitive science, psychology, neuroscience, and psychiatry",
+"type": "main_site"
+},
+"psychology.meta.stackexchange.com": {
+"name": "Psychology & Neuroscience Meta",
+"api": "psychology.meta",
+"audience": "practitioners, researchers, and students in cognitive science, psychology, neuroscience, and psychiatry",
+"type": "meta_site"
+},
+"outdoors.stackexchange.com": {
+"name": "The Great Outdoors",
+"api": "outdoors",
+"audience": "people who love being outdoors enjoying nature and wilderness, and learning about the required skills and equipment",
+"type": "main_site"
+},
+"outdoors.meta.stackexchange.com": {
+"name": "The Great Outdoors Meta",
+"api": "outdoors.meta",
+"audience": "people who love being outdoors enjoying nature and wilderness, and learning about the required skills and equipment",
+"type": "meta_site"
+},
+"martialarts.stackexchange.com": {
+"name": "Martial Arts",
+"api": "martialarts",
+"audience": "students and teachers of all martial arts",
+"type": "main_site"
+},
+"martialarts.meta.stackexchange.com": {
+"name": "Martial Arts Meta",
+"api": "martialarts.meta",
+"audience": "students and teachers of all martial arts",
+"type": "meta_site"
+},
+"sports.stackexchange.com": {
+"name": "Sports",
+"api": "sports",
+"audience": "participants in team and individual sport activities",
+"type": "main_site"
+},
+"sports.meta.stackexchange.com": {
+"name": "Sports Meta",
+"api": "sports.meta",
+"audience": "participants in team and individual sport activities",
+"type": "meta_site"
+},
+"academia.stackexchange.com": {
+"name": "Academia",
+"api": "academia",
+"audience": "academics and those enrolled in higher education",
+"type": "main_site"
+},
+"academia.meta.stackexchange.com": {
+"name": "Academia Meta",
+"api": "academia.meta",
+"audience": "academics and those enrolled in higher education",
+"type": "meta_site"
+},
+"cs.stackexchange.com": {
+"name": "Computer Science",
+"api": "cs",
+"audience": "students, researchers and practitioners of computer science",
+"type": "main_site"
+},
+"cs.meta.stackexchange.com": {
+"name": "Computer Science Meta",
+"api": "cs.meta",
+"audience": "students, researchers and practitioners of computer science",
+"type": "meta_site"
+},
+"workplace.stackexchange.com": {
+"name": "The Workplace",
+"api": "workplace",
+"audience": "members of the workforce navigating the professional setting",
+"type": "main_site"
+},
+"workplace.meta.stackexchange.com": {
+"name": "The Workplace Meta",
+"api": "workplace.meta",
+"audience": "members of the workforce navigating the professional setting",
+"type": "meta_site"
+},
+"chemistry.stackexchange.com": {
+"name": "Chemistry",
+"api": "chemistry",
+"audience": "scientists, academics, teachers, and students in the field of chemistry",
+"type": "main_site"
+},
+"chemistry.meta.stackexchange.com": {
+"name": "Chemistry Meta",
+"api": "chemistry.meta",
+"audience": "scientists, academics, teachers, and students in the field of chemistry",
+"type": "meta_site"
+},
+"chess.stackexchange.com": {
+"name": "Chess",
+"api": "chess",
+"audience": "serious players and enthusiasts of chess",
+"type": "main_site"
+},
+"chess.meta.stackexchange.com": {
+"name": "Chess Meta",
+"api": "chess.meta",
+"audience": "serious players and enthusiasts of chess",
+"type": "meta_site"
+},
+"raspberrypi.stackexchange.com": {
+"name": "Raspberry Pi",
+"api": "raspberrypi",
+"audience": "users and developers of hardware and software for Raspberry Pi",
+"type": "main_site"
+},
+"raspberrypi.meta.stackexchange.com": {
+"name": "Raspberry Pi Meta",
+"api": "raspberrypi.meta",
+"audience": "users and developers of hardware and software for Raspberry Pi",
+"type": "meta_site"
+},
+"russian.stackexchange.com": {
+"name": "Russian Language",
+"api": "russian",
+"audience": "students, teachers, and linguists wanting to discuss the finer points of the Russian language",
+"type": "main_site"
+},
+"russian.meta.stackexchange.com": {
+"name": "Russian Language Meta",
+"api": "russian.meta",
+"audience": "students, teachers, and linguists wanting to discuss the finer points of the Russian language",
+"type": "meta_site"
+},
+"islam.stackexchange.com": {
+"name": "Islam",
+"api": "islam",
+"audience": "Muslims, experts in Islam, and those interested in learning more about Islam",
+"type": "main_site"
+},
+"islam.meta.stackexchange.com": {
+"name": "Islam Meta",
+"api": "islam.meta",
+"audience": "Muslims, experts in Islam, and those interested in learning more about Islam",
+"type": "meta_site"
+},
+"salesforce.stackexchange.com": {
+"name": "Salesforce",
+"api": "salesforce",
+"audience": "Salesforce administrators, implementation experts, developers and anybody in-between",
+"type": "main_site"
+},
+"salesforce.meta.stackexchange.com": {
+"name": "Salesforce Meta",
+"api": "salesforce.meta",
+"audience": "Salesforce administrators, implementation experts, developers and anybody in-between",
+"type": "meta_site"
+},
+"patents.stackexchange.com": {
+"name": "Ask Patents",
+"api": "patents",
+"audience": "people interested in improving and participating in the patent system",
+"type": "main_site"
+},
+"patents.meta.stackexchange.com": {
+"name": "Ask Patents Meta",
+"api": "patents.meta",
+"audience": "people interested in improving and participating in the patent system",
+"type": "meta_site"
+},
+"genealogy.stackexchange.com": {
+"name": "Genealogy & Family History",
+"api": "genealogy",
+"audience": "expert genealogists and people interested in genealogy or family history",
+"type": "main_site"
+},
+"genealogy.meta.stackexchange.com": {
+"name": "Genealogy & Family History Meta",
+"api": "genealogy.meta",
+"audience": "expert genealogists and people interested in genealogy or family history",
+"type": "meta_site"
+},
+"robotics.stackexchange.com": {
+"name": "Robotics",
+"api": "robotics",
+"audience": "professional robotic engineers, hobbyists, researchers and students",
+"type": "main_site"
+},
+"robotics.meta.stackexchange.com": {
+"name": "Robotics Meta",
+"api": "robotics.meta",
+"audience": "professional robotic engineers, hobbyists, researchers and students",
+"type": "meta_site"
+},
+"expressionengine.stackexchange.com": {
+"name": "ExpressionEngine® Answers",
+"api": "expressionengine",
+"audience": "administrators, end users, developers and designers for ExpressionEngine® CMS",
+"type": "main_site"
+},
+"expressionengine.meta.stackexchange.com": {
+"name": "ExpressionEngine® Answers Meta",
+"api": "expressionengine.meta",
+"audience": "administrators, end users, developers and designers for ExpressionEngine® CMS",
+"type": "meta_site"
+},
+"politics.stackexchange.com": {
+"name": "Politics",
+"api": "politics",
+"audience": "people interested in governments, policies, and political processes",
+"type": "main_site"
+},
+"politics.meta.stackexchange.com": {
+"name": "Politics Meta",
+"api": "politics.meta",
+"audience": "people interested in governments, policies, and political processes",
+"type": "meta_site"
+},
+"anime.stackexchange.com": {
+"name": "Anime & Manga",
+"api": "anime",
+"audience": "anime and manga fans",
+"type": "main_site"
+},
+"anime.meta.stackexchange.com": {
+"name": "Anime & Manga Meta",
+"api": "anime.meta",
+"audience": "anime and manga fans",
+"type": "meta_site"
+},
+"magento.stackexchange.com": {
+"name": "Magento",
+"api": "magento",
+"audience": "users of the Magento e-Commerce platform",
+"type": "main_site"
+},
+"magento.meta.stackexchange.com": {
+"name": "Magento Meta",
+"api": "magento.meta",
+"audience": "users of the Magento e-Commerce platform",
+"type": "meta_site"
+},
+"ell.stackexchange.com": {
+"name": "English Language Learners",
+"api": "ell",
+"audience": "speakers of other languages learning English",
+"type": "main_site"
+},
+"ell.meta.stackexchange.com": {
+"name": "English Language Learners Meta",
+"api": "ell.meta",
+"audience": "speakers of other languages learning English",
+"type": "meta_site"
+},
+"sustainability.stackexchange.com": {
+"name": "Sustainable Living",
+"api": "sustainability",
+"audience": "folks dedicated to a lifestyle that can be maintained indefinitely without depleting available resources",
+"type": "main_site"
+},
+"sustainability.meta.stackexchange.com": {
+"name": "Sustainable Living Meta",
+"api": "sustainability.meta",
+"audience": "folks dedicated to a lifestyle that can be maintained indefinitely without depleting available resources",
+"type": "meta_site"
+},
+"tridion.stackexchange.com": {
+"name": "Tridion",
+"api": "tridion",
+"audience": "Tridion developers and administrators",
+"type": "main_site"
+},
+"tridion.meta.stackexchange.com": {
+"name": "Tridion Meta",
+"api": "tridion.meta",
+"audience": "Tridion developers and administrators",
+"type": "meta_site"
+},
+"reverseengineering.stackexchange.com": {
+"name": "Reverse Engineering",
+"api": "reverseengineering",
+"audience": "researchers and developers who explore the principles of a system through analysis of its structure, function, and operation",
+"type": "main_site"
+},
+"reverseengineering.meta.stackexchange.com": {
+"name": "Reverse Engineering Meta",
+"api": "reverseengineering.meta",
+"audience": "researchers and developers who explore the principles of a system through analysis of its structure, function, and operation",
+"type": "meta_site"
+},
+"networkengineering.stackexchange.com": {
+"name": "Network Engineering",
+"api": "networkengineering",
+"audience": "network engineers",
+"type": "main_site"
+},
+"networkengineering.meta.stackexchange.com": {
+"name": "Network Engineering Meta",
+"api": "networkengineering.meta",
+"audience": "network engineers",
+"type": "meta_site"
+},
+"opendata.stackexchange.com": {
+"name": "Open Data",
+"api": "opendata",
+"audience": "developers and researchers interested in open data",
+"type": "main_site"
+},
+"opendata.meta.stackexchange.com": {
+"name": "Open Data Meta",
+"api": "opendata.meta",
+"audience": "developers and researchers interested in open data",
+"type": "meta_site"
+},
+"freelancing.stackexchange.com": {
+"name": "Freelancing",
+"api": "freelancing",
+"audience": " self-employed and freelance workers",
+"type": "main_site"
+},
+"freelancing.meta.stackexchange.com": {
+"name": "Freelancing Meta",
+"api": "freelancing.meta",
+"audience": " self-employed and freelance workers",
+"type": "meta_site"
+},
+"blender.stackexchange.com": {
+"name": "Blender",
+"api": "blender",
+"audience": "people who use Blender to create 3D graphics, animations, or games",
+"type": "main_site"
+},
+"blender.meta.stackexchange.com": {
+"name": "Blender Meta",
+"api": "blender.meta",
+"audience": "people who use Blender to create 3D graphics, animations, or games",
+"type": "meta_site"
+},
+"mathoverflow.net": {
+"name": "MathOverflow",
+"api": "mathoverflow.net",
+"audience": "professional mathematicians",
+"type": "main_site"
+},
+"meta.mathoverflow.net": {
+"name": "MathOverflow Meta",
+"api": "meta.mathoverflow.net",
+"audience": "professional mathematicians",
+"type": "meta_site"
+},
+"space.stackexchange.com": {
+"name": "Space Exploration",
+"api": "space",
+"audience": "spacecraft operators, scientists, engineers, and enthusiasts",
+"type": "main_site"
+},
+"space.meta.stackexchange.com": {
+"name": "Space Exploration Meta",
+"api": "space.meta",
+"audience": "spacecraft operators, scientists, engineers, and enthusiasts",
+"type": "meta_site"
+},
+"sound.stackexchange.com": {
+"name": "Sound Design",
+"api": "sound",
+"audience": "sound engineers, producers, editors, and enthusiasts",
+"type": "main_site"
+},
+"sound.meta.stackexchange.com": {
+"name": "Sound Design Meta",
+"api": "sound.meta",
+"audience": "sound designers",
+"type": "meta_site"
+},
+"astronomy.stackexchange.com": {
+"name": "Astronomy",
+"api": "astronomy",
+"audience": "astronomers and astrophysicists",
+"type": "main_site"
+},
+"astronomy.meta.stackexchange.com": {
+"name": "Astronomy Meta",
+"api": "astronomy.meta",
+"audience": "astronomers and astrophysicists",
+"type": "meta_site"
+},
+"tor.stackexchange.com": {
+"name": "Tor",
+"api": "tor",
+"audience": "researchers, developers, and users of Tor",
+"type": "main_site"
+},
+"tor.meta.stackexchange.com": {
+"name": "Tor Meta",
+"api": "tor.meta",
+"audience": "researchers, developers, and users of Tor",
+"type": "meta_site"
+},
+"pets.stackexchange.com": {
+"name": "Pets",
+"api": "pets",
+"audience": "pet owners, caretakers, breeders, veterinarians, and trainers",
+"type": "main_site"
+},
+"pets.meta.stackexchange.com": {
+"name": "Pets Meta",
+"api": "pets.meta",
+"audience": "pet owners, caretakers, breeders, veterinarians, and trainers",
+"type": "meta_site"
+},
+"ham.stackexchange.com": {
+"name": "Amateur Radio",
+"api": "ham",
+"audience": "amateur radio enthusiasts",
+"type": "main_site"
+},
+"ham.meta.stackexchange.com": {
+"name": "Amateur Radio Meta",
+"api": "ham.meta",
+"audience": "amateur radio enthusiasts",
+"type": "meta_site"
+},
+"italian.stackexchange.com": {
+"name": "Italian Language",
+"api": "italian",
+"audience": "students, teachers, and linguists wanting to discuss the finer points of the Italian language",
+"type": "main_site"
+},
+"italian.meta.stackexchange.com": {
+"name": "Italian Language Meta",
+"api": "italian.meta",
+"audience": "students, teachers, and linguists wanting to discuss the finer points of the Italian language",
+"type": "meta_site"
+},
+"pt.stackoverflow.com": {
+"name": "Stack Overflow em Português",
+"api": "pt.stackoverflow",
+"audience": "programadores profissionais e entusiastas",
+"type": "main_site"
+},
+"pt.meta.stackoverflow.com": {
+"name": "Stack Overflow em Português Meta",
+"api": "pt.meta.stackoverflow",
+"audience": "programadores profissionais e entusiastas",
+"type": "meta_site"
+},
+"aviation.stackexchange.com": {
+"name": "Aviation",
+"api": "aviation",
+"audience": "aircraft pilots, mechanics, and enthusiasts",
+"type": "main_site"
+},
+"aviation.meta.stackexchange.com": {
+"name": "Aviation Meta",
+"api": "aviation.meta",
+"audience": "aircraft pilots, mechanics, and enthusiasts",
+"type": "meta_site"
+},
+"ebooks.stackexchange.com": {
+"name": "Ebooks",
+"api": "ebooks",
+"audience": "ebook publishers and readers",
+"type": "main_site"
+},
+"ebooks.meta.stackexchange.com": {
+"name": "Ebooks Meta",
+"api": "ebooks.meta",
+"audience": "ebook publishers and readers",
+"type": "meta_site"
+},
+"alcohol.stackexchange.com": {
+"name": "Beer, Wine & Spirits",
+"api": "alcohol",
+"audience": "alcoholic beverage aficionados and those interested in beer, wine, or spirits",
+"type": "main_site"
+},
+"alcohol.meta.stackexchange.com": {
+"name": "Beer, Wine & Spirits Meta",
+"api": "alcohol.meta",
+"audience": "alcoholic beverage aficionados and those interested in beer, wine, or spirits",
+"type": "meta_site"
+},
+"softwarerecs.stackexchange.com": {
+"name": "Software Recommendations",
+"api": "softwarerecs",
+"audience": "people seeking specific software recommendations",
+"type": "main_site"
+},
+"softwarerecs.meta.stackexchange.com": {
+"name": "Software Recommendations Meta",
+"api": "softwarerecs.meta",
+"audience": "people seeking specific software recommendations",
+"type": "meta_site"
+},
+"arduino.stackexchange.com": {
+"name": "Arduino",
+"api": "arduino",
+"audience": "developers of open-source hardware and software that is compatible with Arduino",
+"type": "main_site"
+},
+"arduino.meta.stackexchange.com": {
+"name": "Arduino Meta",
+"api": "arduino.meta",
+"audience": "developers of open-source hardware and software that is compatible with Arduino",
+"type": "meta_site"
+},
+"cs50.stackexchange.com": {
+"name": "CS50",
+"api": "cs50",
+"audience": "students of Harvard University's CS50",
+"type": "main_site"
+},
+"cs50.meta.stackexchange.com": {
+"name": "CS50 Meta",
+"api": "cs50.meta",
+"audience": "students of Harvard University's CS50",
+"type": "meta_site"
+},
+"expatriates.stackexchange.com": {
+"name": "Expatriates",
+"api": "expatriates",
+"audience": "people living abroad on a long-term basis",
+"type": "main_site"
+},
+"expatriates.meta.stackexchange.com": {
+"name": "Expatriates Meta",
+"api": "expatriates.meta",
+"audience": "people living abroad on a long-term basis",
+"type": "meta_site"
+},
+"matheducators.stackexchange.com": {
+"name": "Mathematics Educators",
+"api": "matheducators",
+"audience": "those involved in the field of teaching mathematics",
+"type": "main_site"
+},
+"matheducators.meta.stackexchange.com": {
+"name": "Mathematics Educators Meta",
+"api": "matheducators.meta",
+"audience": "those involved in the field of teaching mathematics",
+"type": "meta_site"
+},
+"meta.stackoverflow.com": {
+"name": "Meta Stack Overflow",
+"api": "meta.stackoverflow",
+"audience": "professional and enthusiast programmers",
+"type": "meta_site"
+},
+"earthscience.stackexchange.com": {
+"name": "Earth Science",
+"api": "earthscience",
+"audience": "those interested in the geology, meteorology, oceanography, and environmental sciences",
+"type": "main_site"
+},
+"earthscience.meta.stackexchange.com": {
+"name": "Earth Science Meta",
+"api": "earthscience.meta",
+"audience": "those interested in the geology, meteorology, oceanography, and environmental sciences",
+"type": "meta_site"
+},
+"joomla.stackexchange.com": {
+"name": "Joomla",
+"api": "joomla",
+"audience": "Joomla! administrators, users, developers and designers",
+"type": "main_site"
+},
+"joomla.meta.stackexchange.com": {
+"name": "Joomla Meta",
+"api": "joomla.meta",
+"audience": "Joomla! administrators, users, developers and designers",
+"type": "meta_site"
+},
+"datascience.stackexchange.com": {
+"name": "Data Science",
+"api": "datascience",
+"audience": "Data science professionals, Machine Learning specialists, and those interested in learning more about the field",
+"type": "main_site"
+},
+"datascience.meta.stackexchange.com": {
+"name": "Data Science Meta",
+"api": "datascience.meta",
+"audience": "Data science professionals, Machine Learning specialists, and those interested in learning more about the field",
+"type": "meta_site"
+},
+"puzzling.stackexchange.com": {
+"name": "Puzzling",
+"api": "puzzling",
+"audience": "those who create, solve, and study puzzles",
+"type": "main_site"
+},
+"puzzling.meta.stackexchange.com": {
+"name": "Puzzling Meta",
+"api": "puzzling.meta",
+"audience": "those who create, solve, and study puzzles",
+"type": "meta_site"
+},
+"craftcms.stackexchange.com": {
+"name": "Craft CMS",
+"api": "craftcms",
+"audience": "administrators, end users, developers and designers for Craft CMS",
+"type": "main_site"
+},
+"craftcms.meta.stackexchange.com": {
+"name": "Craft CMS Meta",
+"api": "craftcms.meta",
+"audience": "administrators, end users, developers and designers for Craft CMS",
+"type": "meta_site"
+},
+"buddhism.stackexchange.com": {
+"name": "Buddhism",
+"api": "buddhism",
+"audience": "people practicing or interested in Buddhist philosophy, teaching, and practice",
+"type": "main_site"
+},
+"buddhism.meta.stackexchange.com": {
+"name": "Buddhism Meta",
+"api": "buddhism.meta",
+"audience": "people practicing or interested in Buddhist philosophy, teaching, and practice",
+"type": "meta_site"
+},
+"hinduism.stackexchange.com": {
+"name": "Hinduism",
+"api": "hinduism",
+"audience": "followers of the Hindu religion and those interested in learning more about Hinduism",
+"type": "main_site"
+},
+"hinduism.meta.stackexchange.com": {
+"name": "Hinduism Meta",
+"api": "hinduism.meta",
+"audience": "followers of the Hindu religion and those interested in learning more about Hinduism",
+"type": "meta_site"
+},
+"communitybuilding.stackexchange.com": {
+"name": "Community Building",
+"api": "communitybuilding",
+"audience": "community managers, administrators, and moderators",
+"type": "main_site"
+},
+"communitybuilding.meta.stackexchange.com": {
+"name": "Community Building Meta",
+"api": "communitybuilding.meta",
+"audience": "community managers, administrators, and moderators",
+"type": "meta_site"
+},
+"worldbuilding.stackexchange.com": {
+"name": "Worldbuilding",
+"api": "worldbuilding",
+"audience": "writers/artists using science, geography and culture to construct imaginary worlds and settings",
+"type": "main_site"
+},
+"worldbuilding.meta.stackexchange.com": {
+"name": "Worldbuilding Meta",
+"api": "worldbuilding.meta",
+"audience": "writers/artists using science, geography and culture to construct imaginary worlds and settings",
+"type": "meta_site"
+},
+"ja.stackoverflow.com": {
+"name": "スタック・オーバーフロー",
+"api": "ja.stackoverflow",
+"audience": "プログラマーとプログラミングに熱心な人",
+"type": "main_site"
+},
+"ja.meta.stackoverflow.com": {
+"name": "スタック・オーバーフローMeta",
+"api": "ja.meta.stackoverflow",
+"audience": "プログラマーとプログラミングに熱心な人",
+"type": "meta_site"
+},
+"emacs.stackexchange.com": {
+"name": "Emacs",
+"api": "emacs",
+"audience": "those using, extending or developing Emacs",
+"type": "main_site"
+},
+"emacs.meta.stackexchange.com": {
+"name": "Emacs Meta",
+"api": "emacs.meta",
+"audience": "those using, extending or developing Emacs",
+"type": "meta_site"
+},
+"hsm.stackexchange.com": {
+"name": "History of Science and Mathematics",
+"api": "hsm",
+"audience": "people interested in the history and origins of science and mathematics",
+"type": "main_site"
+},
+"hsm.meta.stackexchange.com": {
+"name": "History of Science and Mathematics Meta",
+"api": "hsm.meta",
+"audience": "people interested in the history and origins of science and mathematics",
+"type": "meta_site"
+},
+"economics.stackexchange.com": {
+"name": "Economics",
+"api": "economics",
+"audience": "those who study, teach, research and apply economics and econometrics",
+"type": "main_site"
+},
+"economics.meta.stackexchange.com": {
+"name": "Economics Meta",
+"api": "economics.meta",
+"audience": "professional and academic economists and analysts",
+"type": "meta_site"
+},
+"lifehacks.stackexchange.com": {
+"name": "Lifehacks",
+"api": "lifehacks",
+"audience": "people looking to bypass life's everyday problems with simple tricks",
+"type": "main_site"
+},
+"lifehacks.meta.stackexchange.com": {
+"name": "Lifehacks Meta",
+"api": "lifehacks.meta",
+"audience": "people looking to bypass life's everyday problems with simple tricks",
+"type": "meta_site"
+},
+"engineering.stackexchange.com": {
+"name": "Engineering",
+"api": "engineering",
+"audience": "professionals and students of engineering",
+"type": "main_site"
+},
+"engineering.meta.stackexchange.com": {
+"name": "Engineering Meta",
+"api": "engineering.meta",
+"audience": "professionals and students of engineering",
+"type": "meta_site"
+},
+"coffee.stackexchange.com": {
+"name": "Coffee",
+"api": "coffee",
+"audience": "people interested in all aspects of producing and consuming coffee",
+"type": "main_site"
+},
+"coffee.meta.stackexchange.com": {
+"name": "Coffee Meta",
+"api": "coffee.meta",
+"audience": "people interested in all aspects of producing and consuming coffee",
+"type": "meta_site"
+},
+"vi.stackexchange.com": {
+"name": "Vi and Vim",
+"api": "vi",
+"audience": "people using the vi and Vim families of text editors",
+"type": "main_site"
+},
+"vi.meta.stackexchange.com": {
+"name": "Vi and Vim Meta",
+"api": "vi.meta",
+"audience": "people using the vi and Vim families of text editors",
+"type": "meta_site"
+},
+"musicfans.stackexchange.com": {
+"name": "Music Fans",
+"api": "musicfans",
+"audience": "music historians, critics, and fans",
+"type": "main_site"
+},
+"musicfans.meta.stackexchange.com": {
+"name": "Music Fans Meta",
+"api": "musicfans.meta",
+"audience": "music historians, critics, and fans",
+"type": "meta_site"
+},
+"woodworking.stackexchange.com": {
+"name": "Woodworking",
+"api": "woodworking",
+"audience": "professional and amateur woodworkers",
+"type": "main_site"
+},
+"woodworking.meta.stackexchange.com": {
+"name": "Woodworking Meta",
+"api": "woodworking.meta",
+"audience": "professional and amateur woodworkers",
+"type": "meta_site"
+},
+"civicrm.stackexchange.com": {
+"name": "CiviCRM",
+"api": "civicrm",
+"audience": "administrators and users of the CiviCRM  Constituent Relationship Management software",
+"type": "main_site"
+},
+"civicrm.meta.stackexchange.com": {
+"name": "CiviCRM Meta",
+"api": "civicrm.meta",
+"audience": "administrators and users of the CiviCRM Constituent Relationship Management software",
+"type": "meta_site"
+},
+"medicalsciences.stackexchange.com": {
+"name": "Medical Sciences",
+"api": "medicalsciences",
+"audience": "professionals in medical and allied health fields, students of those professions, related academics, and others with a sound understanding of medicine and healthcare-related sciences",
+"type": "main_site"
+},
+"medicalsciences.meta.stackexchange.com": {
+"name": "Medical Sciences Meta",
+"api": "medicalsciences.meta",
+"audience": "professionals in medical and allied health fields, students of those professions, related academics, and others with a sound understanding of medicine and healthcare-related sciences",
+"type": "meta_site"
+},
+"ru.stackoverflow.com": {
+"name": "Stack Overflow на русском",
+"api": "ru.stackoverflow",
+"audience": "программистов",
+"type": "main_site"
+},
+"ru.meta.stackoverflow.com": {
+"name": "Stack Overflow на русском Meta",
+"api": "ru.meta.stackoverflow",
+"audience": "программистов",
+"type": "meta_site"
+},
+"rus.stackexchange.com": {
+"name": "Русский язык",
+"api": "rus",
+"audience": "лингвистов и энтузиастов русского языка",
+"type": "main_site"
+},
+"rus.meta.stackexchange.com": {
+"name": "Русский язык Meta",
+"api": "rus.meta",
+"audience": "лингвистов и энтузиастов русского языка",
+"type": "meta_site"
+},
+"mythology.stackexchange.com": {
+"name": "Mythology & Folklore",
+"api": "mythology",
+"audience": "enthusiasts and scholars of mythology and folklore",
+"type": "main_site"
+},
+"mythology.meta.stackexchange.com": {
+"name": "Mythology & Folklore Meta",
+"api": "mythology.meta",
+"audience": "enthusiasts and scholars of mythology and folklore",
+"type": "meta_site"
+},
+"law.stackexchange.com": {
+"name": "Law",
+"api": "law",
+"audience": "legal professionals, students, and others with experience or interest in law",
+"type": "main_site"
+},
+"law.meta.stackexchange.com": {
+"name": "Law Meta",
+"api": "law.meta",
+"audience": "legal professionals, students, and others with experience or interest in law",
+"type": "meta_site"
+},
+"opensource.stackexchange.com": {
+"name": "Open Source",
+"api": "opensource",
+"audience": "people organizing, marketing or licensing open source development projects",
+"type": "main_site"
+},
+"opensource.meta.stackexchange.com": {
+"name": "Open Source Meta",
+"api": "opensource.meta",
+"audience": "people organizing, marketing or licensing open source development projects",
+"type": "meta_site"
+},
+"elementaryos.stackexchange.com": {
+"name": "elementary OS",
+"api": "elementaryos",
+"audience": "developers and users of elementary OS and applications",
+"type": "main_site"
+},
+"elementaryos.meta.stackexchange.com": {
+"name": "elementary OS Meta",
+"api": "elementaryos.meta",
+"audience": "developers and users of elementary OS and applications",
+"type": "meta_site"
+},
+"portuguese.stackexchange.com": {
+"name": "Portuguese Language",
+"api": "portuguese",
+"audience": "linguists, teachers and learners wanting to discuss the finer points of the Portuguese language",
+"type": "main_site"
+},
+"portuguese.meta.stackexchange.com": {
+"name": "Portuguese Language Meta",
+"api": "portuguese.meta",
+"audience": "linguists, teachers and learners wanting to discuss the finer points of the Portuguese language",
+"type": "meta_site"
+},
+"computergraphics.stackexchange.com": {
+"name": "Computer Graphics",
+"api": "computergraphics",
+"audience": "computer graphics researchers and programmers",
+"type": "main_site"
+},
+"computergraphics.meta.stackexchange.com": {
+"name": "Computer Graphics Meta",
+"api": "computergraphics.meta",
+"audience": "computer graphics researchers and programmers",
+"type": "meta_site"
+},
+"hardwarerecs.stackexchange.com": {
+"name": "Hardware Recommendations",
+"api": "hardwarerecs",
+"audience": "people seeking specific hardware recommendations",
+"type": "main_site"
+},
+"hardwarerecs.meta.stackexchange.com": {
+"name": "Hardware Recommendations Meta",
+"api": "hardwarerecs.meta",
+"audience": "people seeking specific hardware recommendations",
+"type": "meta_site"
+},
+"es.stackoverflow.com": {
+"name": "Stack Overflow en español",
+"api": "es.stackoverflow",
+"audience": "programadores y profesionales de la informática",
+"type": "main_site"
+},
+"es.meta.stackoverflow.com": {
+"name": "Stack Overflow Meta en español",
+"api": "es.meta.stackoverflow",
+"audience": "programadores y profesionales de la informática",
+"type": "meta_site"
+},
+"3dprinting.stackexchange.com": {
+"name": "3D Printing",
+"api": "3dprinting",
+"audience": "3D printing enthusiasts",
+"type": "main_site"
+},
+"3dprinting.meta.stackexchange.com": {
+"name": "3D Printing Meta",
+"api": "3dprinting.meta",
+"audience": "3D printing enthusiasts",
+"type": "meta_site"
+},
+"ethereum.stackexchange.com": {
+"name": "Ethereum",
+"api": "ethereum",
+"audience": "users of Ethereum, the decentralized application platform and smart contract enabled blockchain",
+"type": "main_site"
+},
+"ethereum.meta.stackexchange.com": {
+"name": "Ethereum Meta",
+"api": "ethereum.meta",
+"audience": "users of Ethereum, the decentralized application platform and smart contract enabled blockchain",
+"type": "meta_site"
+},
+"latin.stackexchange.com": {
+"name": "Latin Language",
+"api": "latin",
+"audience": "linguists, teachers, and students wanting to discuss the finer points of the Latin language",
+"type": "main_site"
+},
+"latin.meta.stackexchange.com": {
+"name": "Latin Language Meta",
+"api": "latin.meta",
+"audience": "linguists, teachers, and students wanting to discuss the finer points of the Latin language",
+"type": "meta_site"
+},
+"languagelearning.stackexchange.com": {
+"name": "Language Learning",
+"api": "languagelearning",
+"audience": "students, teachers, polyglots, and anyone interested in the techniques of second-language acquisition",
+"type": "main_site"
+},
+"languagelearning.meta.stackexchange.com": {
+"name": "Language Learning Meta",
+"api": "languagelearning.meta",
+"audience": "students, teachers, polyglots, and anyone interested in the techniques of second-language acquisition",
+"type": "meta_site"
+},
+"retrocomputing.stackexchange.com": {
+"name": "Retrocomputing",
+"api": "retrocomputing",
+"audience": "vintage-computer hobbyists interested in restoring, preserving, and using the classic computer and gaming systems of yesteryear",
+"type": "main_site"
+},
+"retrocomputing.meta.stackexchange.com": {
+"name": "Retrocomputing Meta",
+"api": "retrocomputing.meta",
+"audience": "vintage-computer hobbyists interested in restoring, preserving, and using the classic computer and gaming systems of yesteryear",
+"type": "meta_site"
+},
+"crafts.stackexchange.com": {
+"name": "Arts & Crafts",
+"api": "crafts",
+"audience": "artists and crafters",
+"type": "main_site"
+},
+"crafts.meta.stackexchange.com": {
+"name": "Arts & Crafts Meta",
+"api": "crafts.meta",
+"audience": "artists and crafters",
+"type": "meta_site"
+},
+"korean.stackexchange.com": {
+"name": "Korean Language",
+"api": "korean",
+"audience": "linguists, teachers and students of the Korean language",
+"type": "main_site"
+},
+"korean.meta.stackexchange.com": {
+"name": "Korean Language Meta",
+"api": "korean.meta",
+"audience": "linguists, teachers and students of the Korean language",
+"type": "meta_site"
+},
+"monero.stackexchange.com": {
+"name": "Monero",
+"api": "monero",
+"audience": "developers and users of the secure, private and untraceable cryptocurrency Monero",
+"type": "main_site"
+},
+"monero.meta.stackexchange.com": {
+"name": "Monero Meta",
+"api": "monero.meta",
+"audience": "developers and users of the secure, private and untraceable cryptocurrency Monero",
+"type": "meta_site"
+},
+"ai.stackexchange.com": {
+"name": "Artificial Intelligence",
+"api": "ai",
+"audience": "people interested in conceptual questions about life and challenges in a world where \"cognitive\" functions can be mimicked in purely digital environment",
+"type": "main_site"
+},
+"ai.meta.stackexchange.com": {
+"name": "Artificial Intelligence Meta",
+"api": "ai.meta",
+"audience": "people interested in conceptual questions about life and challenges in a world where \"cognitive\" functions can be mimicked in purely digital environment",
+"type": "meta_site"
+},
+"esperanto.stackexchange.com": {
+"name": "Esperanto Language",
+"api": "esperanto",
+"audience": "teachers and students of the Esperanto language",
+"type": "main_site"
+},
+"esperanto.meta.stackexchange.com": {
+"name": "Esperanto Language Meta",
+"api": "esperanto.meta",
+"audience": "teachers and students of the Esperanto language",
+"type": "meta_site"
+},
+"sitecore.stackexchange.com": {
+"name": "Sitecore",
+"api": "sitecore",
+"audience": "developers and end users of the Sitecore CMS and multichannel marketing software",
+"type": "main_site"
+},
+"sitecore.meta.stackexchange.com": {
+"name": "Sitecore Meta",
+"api": "sitecore.meta",
+"audience": "developers and end users of the Sitecore CMS and multichannel marketing software",
+"type": "meta_site"
+},
+"iot.stackexchange.com": {
+"name": "Internet of Things",
+"api": "iot",
+"audience": "builders and users of networked sensors and control devices in the contexts of smart homes, industry automation, or environmental sensors",
+"type": "main_site"
+},
+"iot.meta.stackexchange.com": {
+"name": "Internet of Things Meta",
+"api": "iot.meta",
+"audience": "builders and users of networked sensors and control devices in the contexts of smart homes, industry automation, or environmental sensors",
+"type": "meta_site"
+},
+"literature.stackexchange.com": {
+"name": "Literature",
+"api": "literature",
+"audience": "scholars and enthusiasts of literature",
+"type": "main_site"
+},
+"literature.meta.stackexchange.com": {
+"name": "Literature Meta",
+"api": "literature.meta",
+"audience": "scholars and enthusiasts of literature",
+"type": "meta_site"
+},
+"vegetarianism.stackexchange.com": {
+"name": "Veganism & Vegetarianism",
+"api": "vegetarianism",
+"audience": "those committed to a vegan or vegetarian lifestyle and anyone interested in learning more",
+"type": "main_site"
+},
+"vegetarianism.meta.stackexchange.com": {
+"name": "Veganism & Vegetarianism Meta",
+"api": "vegetarianism.meta",
+"audience": "those committed to a vegan or vegetarian lifestyle and anyone interested in learning more",
+"type": "meta_site"
+},
+"ukrainian.stackexchange.com": {
+"name": "Ukrainian Language",
+"api": "ukrainian",
+"audience": "linguists, teachers and students of the Ukrainian language",
+"type": "main_site"
+},
+"ukrainian.meta.stackexchange.com": {
+"name": "Ukrainian Language Meta",
+"api": "ukrainian.meta",
+"audience": "linguists, teachers and students of the Ukrainian language",
+"type": "meta_site"
+},
+"devops.stackexchange.com": {
+"name": "DevOps",
+"api": "devops",
+"audience": "software engineers working on automated testing, continuous delivery, service integration and monitoring, and building SDLC infrastructure",
+"type": "main_site"
+},
+"devops.meta.stackexchange.com": {
+"name": "DevOps Meta",
+"api": "devops.meta",
+"audience": "software engineers working on automated testing, continuous delivery, service integration and monitoring, and building SDLC infrastructure",
+"type": "meta_site"
+},
+"bioinformatics.stackexchange.com": {
+"name": "Bioinformatics",
+"api": "bioinformatics",
+"audience": "researchers, developers, students, teachers, and end users interested in bioinformatics",
+"type": "main_site"
+},
+"bioinformatics.meta.stackexchange.com": {
+"name": "Bioinformatics Meta",
+"api": "bioinformatics.meta",
+"audience": "researchers, developers, students, teachers, and end users interested in bioinformatics",
+"type": "meta_site"
+},
+"cseducators.stackexchange.com": {
+"name": "Computer Science Educators",
+"api": "cseducators",
+"audience": "those involved in the field of teaching Computer Science",
+"type": "main_site"
+},
+"cseducators.meta.stackexchange.com": {
+"name": "Computer Science Educators Meta",
+"api": "cseducators.meta",
+"audience": "those involved in the field of teaching Computer Science",
+"type": "meta_site"
+},
+"interpersonal.stackexchange.com": {
+"name": "Interpersonal Skills",
+"api": "interpersonal",
+"audience": "people looking to improve their interpersonal communication skills",
+"type": "main_site"
+},
+"interpersonal.meta.stackexchange.com": {
+"name": "Interpersonal Skills Meta",
+"api": "interpersonal.meta",
+"audience": "people looking to improve their interpersonal communication skills",
+"type": "meta_site"
+},
+"iota.stackexchange.com": {
+"name": "Iota",
+"api": "iota",
+"audience": "users of Iota, the open-source cryptocurrency for IoT that does not use a blockchain",
+"type": "main_site"
+},
+"iota.meta.stackexchange.com": {
+"name": "Iota Meta",
+"api": "iota.meta",
+"audience": "users of Iota, the open-source cryptocurrency for IoT that does not use a blockchain",
+"type": "meta_site"
+},
+"stellar.stackexchange.com": {
+"name": "Stellar",
+"api": "stellar",
+"audience": "developers and users of Stellar and the Stellar Distributed Exchange",
+"type": "main_site"
+},
+"stellar.meta.stackexchange.com": {
+"name": "Stellar Meta",
+"api": "stellar.meta",
+"audience": "developers and users of Stellar and the Stellar Distributed Exchange",
+"type": "meta_site"
+},
+"conlang.stackexchange.com": {
+"name": "Constructed Languages",
+"api": "conlang",
+"audience": "designers and users of artificial or invented languages, consciously developed instead of having developed naturally",
+"type": "main_site"
+},
+"conlang.meta.stackexchange.com": {
+"name": "Constructed Languages Meta",
+"api": "conlang.meta",
+"audience": "designers and users of artificial or invented languages, consciously developed instead of having developed naturally",
+"type": "meta_site"
+},
+"quantumcomputing.stackexchange.com": {
+"name": "Quantum Computing",
+"api": "quantumcomputing",
+"audience": "engineers, scientists, programmers, and computing professionals interested in quantum computing",
+"type": "main_site"
+},
+"quantumcomputing.meta.stackexchange.com": {
+"name": "Quantum Computing Meta",
+"api": "quantumcomputing.meta",
+"audience": "engineers, scientists, programmers, and computing professionals interested in quantum computing",
+"type": "meta_site"
+},
+"eosio.stackexchange.com": {
+"name": "EOS.IO",
+"api": "eosio",
+"audience": "users and developers of distributed applications built on top of the blockchain operating system, EOS.IO",
+"type": "main_site"
+},
+"eosio.meta.stackexchange.com": {
+"name": "EOS.IO Meta",
+"api": "eosio.meta",
+"audience": "users and developers of distributed applications built on top of the blockchain operating system, EOS.IO",
+"type": "meta_site"
+},
+"tezos.stackexchange.com": {
+"name": "Tezos",
+"api": "tezos",
+"audience": "users, experts, and developers of the Tezos blockchain project",
+"type": "main_site"
+},
+"tezos.meta.stackexchange.com": {
+"name": "Tezos Meta",
+"api": "tezos.meta",
+"audience": "users, experts, and developers of the Tezos blockchain project",
+"type": "meta_site"
+},
+"or.stackexchange.com": {
+"name": "Operations Research",
+"api": "or",
+"audience": "operations research and analytics professionals, educators, and students",
+"type": "main_site"
+},
+"or.meta.stackexchange.com": {
+"name": "Operations Research Meta",
+"api": "or.meta",
+"audience": "operations research and analytics professionals, educators, and students",
+"type": "meta_site"
+},
+"drones.stackexchange.com": {
+"name": "Drones and Model Aircraft",
+"api": "drones",
+"audience": "experienced flyers, pilots, and builders of drones and model aircraft",
+"type": "main_site"
+},
+"drones.meta.stackexchange.com": {
+"name": "Drones and Model Aircraft Meta",
+"api": "drones.meta",
+"audience": "experienced flyers, pilots, and builders of drones and model aircraft",
+"type": "meta_site"
+},
+"mattermodeling.stackexchange.com": {
+"name": "Matter Modeling",
+"api": "mattermodeling",
+"audience": "materials modelers and data scientists",
+"type": "main_site"
+},
+"mattermodeling.meta.stackexchange.com": {
+"name": "Matter Modeling Meta",
+"api": "mattermodeling.meta",
+"audience": "materials modelers and data scientists",
+"type": "meta_site"
+},
+"cardano.stackexchange.com": {
+"name": "Cardano",
+"api": "cardano",
+"audience": "users and developers of the Cardano cryptocurrency ecosystem",
+"type": "main_site"
+},
+"cardano.meta.stackexchange.com": {
+"name": "Cardano Meta",
+"api": "cardano.meta",
+"audience": "users and developers of the Cardano cryptocurrency ecosystem",
+"type": "meta_site"
+},
+"proofassistants.stackexchange.com": {
+"name": "Proof Assistants",
+"api": "proofassistants",
+"audience": "mathematicians and computer scientists who develop and use proof assistants",
+"type": "main_site"
+},
+"proofassistants.meta.stackexchange.com": {
+"name": "Proof Assistants Meta",
+"api": "proofassistants.meta",
+"audience": "mathematicians and computer scientists who develop and use proof assistants",
+"type": "meta_site"
+},
+"substrate.stackexchange.com": {
+"name": "Substrate and Polkadot",
+"api": "substrate",
+"audience": "developers building blockchains with the Substrate SDK",
+"type": "main_site"
+},
+"substrate.meta.stackexchange.com": {
+"name": "Substrate and Polkadot Meta",
+"api": "substrate.meta",
+"audience": "developers building blockchains with the Substrate SDK",
+"type": "meta_site"
+},
+"bioacoustics.stackexchange.com": {
+"name": "Bioacoustics",
+"api": "bioacoustics",
+"audience": "people interested in the studies of non-human animal sounds and the impacts of sounds on animals",
+"type": "main_site"
+},
+"bioacoustics.meta.stackexchange.com": {
+"name": "Bioacoustics Meta",
+"api": "bioacoustics.meta",
+"audience": "people interested in the studies of non-human animal sounds and the impacts of sounds on animals",
+"type": "meta_site"
+},
+"solana.stackexchange.com": {
+"name": "Solana",
+"api": "solana",
+"audience": "Solana software users and developers",
+"type": "main_site"
+},
+"solana.meta.stackexchange.com": {
+"name": "Solana Meta",
+"api": "solana.meta",
+"audience": "Solana software users and developers",
+"type": "meta_site"
+},
+"langdev.stackexchange.com": {
+"name": "Programming Language Design and Implementation",
+"api": "langdev",
+"audience": "designers and implementers of computer programming languages",
+"type": "main_site"
+},
+"langdev.meta.stackexchange.com": {
+"name": "Programming Language Design and Implementation Meta",
+"api": "langdev.meta",
+"audience": "designers and implementers of computer programming languages",
+"type": "meta_site"
+},
+"genai.stackexchange.com": {
+"name": "GenAI",
+"api": "genai",
+"audience": "GenAI enthusiasts and practitioners and those interested in learning more about using GenAI tools",
+"type": "main_site"
+},
+"genai.meta.stackexchange.com": {
+"name": "GenAI Meta",
+"api": "genai.meta",
+"audience": "GenAI enthusiasts and practitioners and those interested in learning more about using GenAI tools",
+"type": "meta_site"
+},
+"agents.meta.stackoverflow.com": {
+"name": "Stack Overflow for Agents Meta",
+"api": "agents.meta.stackoverflow",
+"audience": "Humans discussing Stack Overflow for Agents",
+"type": "main_site"
+}
+}

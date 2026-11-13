@@ -1,0 +1,203 @@
+{
+ "youtube_domain_rows": 1053983,
+ "youtube_rows_with_video_id": 965430,
+ "rows_with_trailing_junk_after_id": 1318,
+ "distinct_vid_page_pairs_all_ns": 957589,
+ "top_youtube_domain_indexes": [
+  [
+   "https://com.youtube.www.",
+   911171
+  ],
+  [
+   "http://com.youtube.www.",
+   105452
+  ],
+  [
+   "https://com.youtube.m.",
+   16304
+  ],
+  [
+   "https://com.youtube.",
+   13164
+  ],
+  [
+   "http://com.youtube.",
+   4308
+  ],
+  [
+   "https://com.youtube.music.",
+   1067
+  ],
+  [
+   "http://com.youtube.uk.",
+   931
+  ],
+  [
+   "http://com.youtube.m.",
+   284
+  ],
+  [
+   "http://com.youtube.au.",
+   186
+  ],
+  [
+   "http://com.youtube.ca.",
+   123
+  ],
+  [
+   "https://com.youtube.charts.",
+   94
+  ],
+  [
+   "http://com.youtube.jp.",
+   66
+  ]
+ ],
+ "top_non_video_path_kinds": [
+  [
+   "user",
+   19969
+  ],
+  [
+   "channel",
+   19020
+  ],
+  [
+   "playlist",
+   11687
+  ],
+  [
+   "c",
+   3547
+  ],
+  [
+   "watch",
+   3360
+  ],
+  [
+   "results",
+   2539
+  ],
+  [
+   "(root)",
+   1600
+  ],
+  [
+   "post",
+   454
+  ],
+  [
+   "profile",
+   438
+  ],
+  [
+   "view_play_list",
+   411
+  ],
+  [
+   "index",
+   255
+  ],
+  [
+   "show",
+   183
+  ],
+  [
+   "@TheWikimediaFoundat",
+   120
+  ],
+  [
+   "t",
+   114
+  ],
+  [
+   "charts",
+   104
+  ]
+ ],
+ "distinct_pages_citing_any_vid_all_ns": 456784,
+ "t_externallinks_s": 89,
+ "page_rows_parsed": 66384916,
+ "citing_pages_found_in_page_table": 456784,
+ "citing_pages_by_namespace": [
+  [
+   0,
+   297672
+  ],
+  [
+   3,
+   54985
+  ],
+  [
+   1,
+   45120
+  ],
+  [
+   2,
+   25455
+  ],
+  [
+   4,
+   20914
+  ],
+  [
+   6,
+   5813
+  ],
+  [
+   118,
+   3278
+  ],
+  [
+   5,
+   2455
+  ],
+  [
+   10,
+   419
+  ],
+  [
+   11,
+   197
+  ],
+  [
+   100,
+   144
+  ],
+  [
+   7,
+   99
+  ]
+ ],
+ "t_page_s": 246,
+ "ns0_articles_citing_any_vid": 297672,
+ "vids_cited_by_ge1_article": 518030,
+ "articles_per_vid_distribution": {
+  "1": 477556,
+  "2": 32854,
+  "3-4": 6483,
+  "10-49": 148,
+  "5-9": 988,
+  "50+": 1
+ },
+ "wiki_counts_full_bytes": 33679519,
+ "wiki_counts_vids_written": 518030,
+ "wiki_counts_bytes": 33679519,
+ "catalog_summary": {
+  "catalog_vids": 6386,
+  "cited_by_ge1_article": 1052,
+  "share_cited": 0.1647,
+  "cited_by_ge2": 259,
+  "cited_by_ge5": 17,
+  "distribution": {
+   "1": 793,
+   "3-4": 67,
+   "2": 175,
+   "5-9": 16,
+   "10+": 1
+  }
+ },
+ "top_not_in_catalog_min_articles": 4,
+ "top_not_in_catalog_max_articles": 155,
+ "runtime_s": 252
+}

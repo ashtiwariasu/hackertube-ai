@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block body %}
+<article class="prose">
+  <p class="crumb">Guide</p>
+  <h1>How to build your own HackerTube with Claude Code</h1>
+  <p class="lede">Karpathy built HackerTube in about two hours by talking to Claude Code. The data is open, so you can fork it the same way. Here is the whole path, including what it costs.</p>
+
+  <h2>1. Get the data</h2>
+  <p>Download the zip from <a href="https://hackertube.org/data" rel="noopener">hackertube.org/data</a>. It holds every video card, about 40,000 labelled HN comments, a topic tree, a "people also recommend" graph and search embeddings. It ships with a DATA.md written for coding agents. The licence is ODC-By 1.0: use it for anything and credit HackerTube.</p>
+
+  <h2>2. Get a YouTube Data API key</h2>
+  <p>View counts, durations and publish dates aren't in the zip because YouTube's terms forbid redistributing them. In Google Cloud, create a project, enable YouTube Data API v3, create an API key and restrict it to that API. Fetching all videos takes about 130 requests, well inside the free 10,000-unit daily quota.</p>
+
+  <h2>3. Tell your agent what to build</h2>
+  <p>Unzip the folder, open Claude Code inside it and describe the site you want. For example:</p>
+  <pre>Read DATA.md. Build a web app from this data: a home feed that mixes HN classics,
+hidden gems and recent favourites, topic pages, semantic search using the included
+embeddings, and a page per video showing the HN comments. Fetch YouTube metadata
+with the key in YOUTUBE_API_KEY and hide deleted videos.</pre>
+
+  <h2>4. Host it</h2>
+  <p>The whole catalogue fits in memory, so any small server works: a $5 VPS like Karpathy's, or a container on Cloud Run or Fly. Search runs on the included 384-dimension vectors with a small CPU embedding model, no GPU needed.</p>
+
+  <h2>What it costs</h2>
+  <table class="tbl">
+    <tr><th>Item</th><th>Cost</th></tr>
+    <tr><td>Dataset</td><td>Free</td></tr>
+    <tr><td>YouTube Data API</td><td>Free quota</td></tr>
+    <tr><td>Hosting</td><td>About $5 a month</td></tr>
+    <tr><td>Domain</td><td>$10 to $80 a year</td></tr>
+    <tr><td>Relabelling all comments yourself with a small model</td><td>Under $10</td></tr>
+  </table>
+
+  <h2>Or skip the build</h2>
+  <p>HackerTube AI is this, already running, plus Google sign-in, YouTube connect and a personal feed. <a href="/pro">Pro is {{ PRICE }}, once.</a></p>
+</article>
+{% endblock %}

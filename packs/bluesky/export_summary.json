@@ -1,0 +1,20 @@
+{
+ "posts": 191621,
+ "post_video_rows": 192976,
+ "skipped_inactive_accounts": 80,
+ "videos": 140721,
+ "stages": {
+  "authors>=2": 15199,
+  "authors>=3": 6780,
+  "q_authors>=3": 563,
+  "q_authors>=3&q_months>=2": 103,
+  "meets_rule": 0
+ },
+ "candidates_written": 15199,
+ "label_mentions": 2737,
+ "label_videos": 563,
+ "months_in_db": [
+  "2026-10",
+  "2026-11"
+ ]
+}

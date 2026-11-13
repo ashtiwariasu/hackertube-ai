@@ -1,0 +1,34 @@
+{% from "_macros.html" import grid %}
+<section class="found-strip">
+  <p class="pc-label">What we found about you</p>
+  <div class="chips">{% for c in r.chips %}<span class="chip found-chip" data-i="{{ loop.index0 }}" data-kind="{{ c.kind }}">{{ c.label }}{% if c.kind not in ('watch', 'feedback') %}<button type="button" class="chip-x" aria-label="Remove">×</button>{% endif %}</span>{% endfor %}</div>
+  {% for e in errors %}<p class="src-err">{{ e }}</p>{% endfor %}
+</section>
+<section class="shot-stats">
+  <div class="tile"><div class="num">{{ r.anchors|length }}</div><p>catalogue videos you already know</p></div>
+  <div class="tile"><div class="num">{{ r.essentials_seen }}<span>/{{ r.ess_total }}</span></div><p>HN essentials you've seen</p></div>
+  <div class="tile"><div class="num">{{ r.picks|length }}</div><p>picks below, each with a reason</p></div>
+</section>
+{% if r.interests and r.confidence != 'weak' %}<p class="shot-taste">You read as <strong>{{ r.interests|join(', ') }}</strong>.</p>
+{% elif r.interests %}<p class="shot-taste">That sits mostly outside what these communities recommend. The closest areas are <strong>{{ r.interests[:3]|join(', ') }}</strong>.</p>{% endif %}
+<section class="row">
+  <div class="row-h"><h2>{% if r.confidence == 'weak' %}Where to start{% else %}Picked for you{% endif %}</h2></div>
+  {{ grid(r.picks, reasons=r.reasons) }}
+</section>
+{% if r.anchors %}
+<section class="row">
+  <div class="row-h"><h2>Already yours, and the community loves them too</h2></div>
+  {{ grid(r.anchors[:8]) }}
+</section>
+{% endif %}
+<section class="pro-band">
+  {% if not user %}
+  <div><h2>Keep this</h2><p>Sign in with Google and this profile follows you, hides what you've seen, and keeps learning from what you watch.</p></div>
+  <a class="btn" href="/auth/login?next=/connect">Keep this</a>
+  {% elif not pro %}
+  <div><h2>Saved to your profile</h2><p>Unlock the full feed and the essentials you've missed.</p></div>
+  <a class="btn" href="/pro">Go Pro for {{ PRICE }}</a>
+  {% else %}
+  <div><h2>Saved</h2><p>Your feed has been updated.</p></div><a class="btn" href="/me">Open your feed</a>
+  {% endif %}
+</section>

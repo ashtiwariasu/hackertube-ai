@@ -1,0 +1,145 @@
+{% extends "base.html" %}{% from "_macros.html" import grid %}
+{% block body %}
+<div class="watch">
+  <div class="watch-main">
+    <div class="player"><div id="player" data-vid="{{ v.vid }}" data-start="{{ resume or 0 }}" data-title="{{ v.title }}"></div><noscript><iframe src="https://www.youtube-nocookie.com/embed/{{ v.vid }}?rel=0" title="{{ v.title }}" allowfullscreen></iframe></noscript></div>
+    {% if resume %}<p class="fine resume-note">Resuming from {{ resume_s }}. <a href="{{ v.url }}?t=0">Start over</a></p>{% endif %}
+    <h1 class="vt">{{ v.title }}</h1>
+    <div class="vbar" data-vid="{{ v.vid }}">
+      <p class="sub">{{ v.channel }}{% if v.views_s %} · {{ v.views_s }} views{% endif %}{% if v.year %} · {{ v.year }}{% endif %}{% if v.dur_s %} · {{ v.dur_s }}{% endif %}</p>
+      <div class="acts static">
+        <button class="act" data-kind="likes">&#9825; Like</button>
+        <button class="act" data-kind="later">&#9719; Watch later</button>
+        <a class="act" href="https://www.youtube.com/watch?v={{ v.vid }}" rel="noopener" target="_blank">Open on YouTube</a>
+        <button class="act" type="button" id="report" data-vid="{{ v.vid }}">Report</button>
+      </div>
+    </div>
+    {% if request.query_params.get('msg') == 'listed' %}<p class="note">It's already listed here. You can review it below once you've watched it.</p>{% endif %}
+    {% if feat %}
+    <section class="feat-box" id="spot">
+      <p class="eyebrow">{% if feat.carried %}From last week's 10{% else %}One of <a href="/week">this week's 10</a>{% endif %}</p>
+      {% if feat.msg %}<p class="note{% if not feat.ok %} warn{% endif %}">{{ feat.msg }}</p>{% endif %}
+      {% if feat.partner %}
+        {% if feat.mine and feat.mine.state == 'held' %}
+        <p><strong>Your paid spot is held until {{ feat.mine.until }}.</strong> Watch it, then write your review below. It earns {{ feat.money(feat.review_cents)|replace('.00', '') }} when at least {{ qualify or 4 }} of its first {{ panel or 5 }} viewers agree, whether you recommend it or not.</p>
+        <form method="post" action="/week/release" class="inline-form"><input type="hidden" name="vid" value="{{ v.vid }}"><input type="hidden" name="next" value="{{ v.url }}"><button class="linkish" type="submit">Give the spot back</button></form>
+        {% elif feat.mine and feat.mine.state == 'used' %}
+        <p>Your paid review of this one is posted. Viewers who watch it here are rating it.</p>
+        {% elif feat.mine %}
+        <p>You had a paid spot on this one this week.{% if feat.open_left %} You can still write an unpaid review below: it counts toward your level.{% endif %}</p>
+        {% elif feat.paid_left and feat.open_now %}
+        <p><strong>{{ feat.paid_left }} of 3 paid spots left.</strong> Claim one and it's yours for 48 hours to post your review.</p>
+        <form method="post" action="/week/claim"><input type="hidden" name="vid" value="{{ v.vid }}"><input type="hidden" name="next" value="{{ v.url }}"><button class="btn" type="submit">Claim a paid spot</button></form>
+        {% elif feat.paid_left %}
+        <p>Paid spots open for {{ feat.level.name }} partners on {{ feat.opens }}.</p>
+        {% else %}
+        <p>All paid spots on this video are taken.{% if feat.open_left %} You can still write an unpaid review below: it counts toward your level.{% endif %}</p>
+        {% endif %}
+      {% else %}
+        <p>Watch a few minutes, then say whether you agree with the reviews. Partners get paid {{ feat.money(feat.review_cents)|replace('.00', '') }} for every review viewers agree with.{% if EARN_ON() %} <a href="/earn" data-from="video-feat">Become a partner</a>.{% endif %}</p>
+      {% endif %}
+      {% if feat.found_by %}<p class="fine">Found by <a href="/r/{{ feat.found_handle }}">{{ feat.found_by }}</a>.</p>{% endif %}
+    </section>
+    {% endif %}
+    {% if via_note %}
+    <section class="via-note">
+      <p class="fine">Shared by <a href="/r/{{ via_note.handle }}">{{ via_note.name }}</a>, who {{ 'recommends it' if via_note.stance == 'rec' else 'says skip it' }}:</p>
+      <blockquote class="hnc"><p>{{ via_note.text }}</p></blockquote>
+    </section>
+    {% endif %}
+    {% if NOTES_ON %}
+    <section class="notes-box" id="notes" data-vid="{{ v.vid }}" hidden>
+      <div class="nb-verdict" hidden>
+        <h2>Was it worth it?</h2>
+        <p class="fine">Tell the next person. You'll see what others here said after you answer.</p>
+        <div class="nb-row"><button class="btn" type="button" data-verdict="rec" disabled>Recommend</button><button class="btn ghost" type="button" data-verdict="skip">Skip it</button></div>
+        <p class="fine nb-lock">Recommend unlocks once you've watched most of it.</p>
+        <form class="nb-form" hidden>
+          <label class="nb-label" for="nb-text">Who is it for, and why?</label>
+          <textarea id="nb-text" maxlength="300" rows="3" placeholder="For example: a clear first lesson on Docker networking if you know containers but keep getting tripped up by localhost."></textarea>
+          <div class="nb-row"><button class="btn" type="submit">Post review</button><span class="fine nb-count"></span></div>
+        </form>
+      </div>
+      <p class="fine nb-norate" hidden>Partners don't rate reviews: only viewers who aren't partners do, so nobody judges a competitor.</p>
+      <div class="nb-judge" hidden>
+        <h2>Do you agree with this review?</h2>
+        <blockquote class="hnc"><p class="hnh"><span class="badge nb-jstance"></span></p><p class="nb-jtext"></p></blockquote>
+        <div class="nb-row"><button class="btn ghost" type="button" data-vote="agree">Agree</button><button class="btn ghost" type="button" data-vote="disagree">Disagree</button><button class="btn ghost" type="button" data-vote="cant">Not sure</button></div>
+        <p class="fine">You'll see how other viewers answered after you do.</p>
+      </div>
+      <p class="nb-tally fine" hidden></p>
+      <p class="fine"><a href="#" class="nb-write-link" hidden>Write a review of this video.</a></p>
+      <form class="nb-wform" hidden>
+        <h2>Your review<span class="nb-paidtag" hidden> (monetised)</span></h2>
+        <p class="nb-row"><label><input type="radio" name="nb-stance" value="rec" checked> Worth watching</label><label><input type="radio" name="nb-stance" value="skip"> One to skip</label></p>
+        <label class="nb-label" for="nb-wtext">Who is it for, and why? Or who should skip it, and why?</label>
+        <textarea id="nb-wtext" maxlength="300" rows="3"></textarea>
+        <label class="nb-label" for="nb-needs">What do you need to know first? (optional)</label>
+        <input id="nb-needs" class="nb-input" maxlength="150">
+        <label class="nb-label" for="nb-moment">The moment worth jumping to (optional, like 12:40)</label>
+        <input id="nb-moment" class="nb-input nb-short" maxlength="8" inputmode="numeric">
+        <p><label class="fine"><input type="checkbox" class="nb-seen"> I have watched this video</label></p>
+        <div class="nb-row"><button class="btn" type="submit">Post review</button></div>
+        <p class="fine">Viewers who watched it here rate your review.<span class="nb-paidline" hidden> This is your paid spot: you earn when at least 4 of its first 5 viewers agree, whether you recommend it or not. Never for watching.</span><span class="nb-openline" hidden> This is an unpaid spot: it builds your level when viewers agree.</span></p>
+      </form>
+      <p class="nb-err" hidden></p>
+      <div class="nb-done" hidden></div>
+      <div class="nb-list"></div>
+      <p class="fine nb-disclose">Reviews come from people on HackerTube AI, not from YouTube. <a href="/terms#notes">How reviews work</a>.{% if EARN_ON() and not (user and user.hacker and user.hacker.status == 'approved') %} <a href="/earn" data-from="video">Get monetised for your reviews</a>.{% endif %}</p>
+    </section>
+    {% endif %}
+    {% if v.added %}
+    <section class="card-box">
+      {% if submit_msg == 'submitted' %}<p class="note">Thanks. Your video is added with your review. It joins the catalogue once at least {{ qualify }} of its first {{ panel }} viewers agree with a review of it.</p>{% endif %}
+      <p class="tags">{% for c in cats %}<a class="chip" href="/topics/{{ c.id }}">{{ c.name }}</a>{% endfor %}<span class="chip plain">{{ 'Vouched by viewers' if v.vouched else 'New find' }}</span></p>
+      <p>Added by {% if v.added_handle %}<a href="/r/{{ v.added_handle }}">{{ adder }}</a>{% else %}{{ adder }}{% endif %} on {{ added_on }}. {% if v.vouched %}Viewers agreed with a review of it, so it's vouched for here.{% else %}Not vouched for yet: it joins the catalogue once at least {{ qualify }} of its first {{ panel }} viewers agree with a review of it.{% endif %}</p>
+    </section>
+    {% else %}
+    <section class="card-box">
+      <p class="tags">{% for c in cats %}<a class="chip" href="/topics/{{ c.id }}">{{ c.name }}</a>{% endfor %}<span class="chip plain">{{ v.type }}</span>{% if v.shelf != 'evergreen' %}<span class="chip plain">{{ v.shelf }}</span>{% endif %}</p>
+      {% for w in (v.why_list if v.why_list is defined else [{"label": "Hacker News", "why": v.why_hn, "recommenders": v.hn.recommenders, "rec_months": v.hn.rec_months, "first_year": v.hn.first_year, "last_year": v.hn.last_year}]) %}
+      <h2>{% if w.c == 'viewers' %}Why viewers here recommend it{% else %}Why {{ w.label }} recommends it{% endif %}</h2>
+      <p>{{ w.why }}</p>
+      <p class="stats">Recommended by <strong>{{ w.recommenders }}</strong> people across <strong>{{ w.rec_months }}</strong> different months{% if w.first_year %}, {{ w.first_year }} to {{ w.last_year }}{% endif %}.</p>
+      {% endfor %}
+      {% if v.web %}
+      <h2>Why the open web links it</h2>
+      {% if v.web.why %}<p>{{ v.web.why }}</p>{% endif %}
+      <p class="stats web-line">Linked by <strong>{{ v.web.domains }}</strong> independent site{% if v.web.domains != 1 %}s{% endif %}{% if v.web.reputable %}, {{ v.web.reputable }} of them widely read{% endif %}{% if v.web.months == 1 %} in the {{ v.web.first_seen }} crawl of the open web{% else %} across <strong>{{ v.web.months }}</strong> monthly crawls of the open web, {{ v.web.first_seen }} to {{ v.web.last_seen }}{% endif %}{% if v.web.top_domains %}, including {{ v.web.top_domains|join(', ') }}{% endif %}.</p>
+      {% endif %}
+      {% if v.summary %}
+      <h2>What it is</h2>
+      <p>{{ v.summary }}</p>
+      {% endif %}
+      {% if v.wiki %}<p class="stats">Cited in <strong>{{ v.wiki.articles }}</strong> Wikipedia article{% if v.wiki.articles != 1 %}s{% endif %}{% if v.wiki.titles %}, including {% for t in v.wiki.titles %}<a href="https://en.wikipedia.org/wiki/{{ t|replace(' ', '_') }}" rel="noopener" target="_blank">{{ t|replace('_', ' ') }}</a>{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}.</p>{% endif %}
+    </section>
+    {% endif %}
+    {% if mentions %}
+    <section class="said">
+      <h2>What people said</h2>
+      {% for m in mentions %}
+      <blockquote class="hnc st-{{ m.stance }}">
+        <p class="hnh"><span class="badge">{{ {'strong_rec':'Strong rec','rec':'Recommends','reference':'Cites','critical':'Critical'}.get(m.stance, 'Mentions') }}</span> {{ m.author }} · {{ m.month }}{% if m.clabel %} · {{ m.clabel }}{% endif %} · <a href="{{ m.url or ('https://news.ycombinator.com/item?id=' ~ m.id) }}" rel="nofollow noopener" target="_blank">on “{{ m.story }}”</a></p>
+        <p>{{ m.text | replace('[VIDEO]', '[this video]') }}</p>
+      </blockquote>
+      {% endfor %}
+    </section>
+    {% endif %}
+  </div>
+  <aside class="watch-side">
+    {% if co %}<h2>HN people also recommend</h2>{{ grid(co) }}{% endif %}
+    <h2>Similar videos</h2>
+    {{ grid(similar) }}
+  </aside>
+</div>
+<script src="/static/player.js?v=2" defer></script>
+{% if NOTES_ON %}<script src="/static/notes.js?v=4" defer></script>{% endif %}
+<script>
+document.getElementById("report").addEventListener("click", async function () {
+  var reason = prompt("What's wrong with this video? (spam, wrong summary, broken, gamed recommendations, other)");
+  if (!reason) return;
+  try { await fetch("/api/report", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ vid: this.dataset.vid, reason: reason.slice(0, 500) }) }); } catch (e) {}
+  this.textContent = "Reported, thanks"; this.disabled = true;
+});
+</script>
+{% endblock %}

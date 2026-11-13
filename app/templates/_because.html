@@ -1,0 +1,5 @@
+{% from "_macros.html" import grid %}
+<section class="row" data-row="because">
+  <div class="row-h"><h2>Because you opened “{{ anchor.title|truncate(60, true, "…") }}”</h2></div>
+  {{ grid(videos, reasons=reasons) }}
+</section>

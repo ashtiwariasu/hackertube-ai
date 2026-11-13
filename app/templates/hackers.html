@@ -1,0 +1,176 @@
+{% extends "base.html" %}{% from "_macros.html" import grid %}
+{% macro levels_table(current=None) %}
+<div class="table-wrap"><table class="rate-table">
+  <tr><th>Level</th><th>Reach it with, in the last {{ level_days }} days</th><th>Paid spots a week</th><th>Claims open</th></tr>
+  {% for lv in levels %}
+  <tr{% if current and current == lv.key %} class="on"{% endif %}><td><strong>{{ lv.name }}</strong></td>
+    <td>{% if lv.counted %}{{ lv.counted }} reviews that count{% else %}Joining{% endif %}</td>
+    <td>{{ lv.spots }}</td><td>{% if lv.early %}{{ lv.early }} hours early{% else %}Monday{% endif %}</td></tr>
+  {% endfor %}
+</table></div>
+<p class="fine">Every review that counts pays the same {{ review|replace('.00', '') }} at every level. Levels give you more chances to earn, and Silver and Gold also need {{ level_rate }}% of your rated reviews to count, so they reward quality, not volume.</p>
+{% endmacro %}
+{% macro pot_box(pot, mine_row=None) %}
+<section class="card-box pot-box" id="diamond">
+  <p class="eyebrow">The Diamond pot</p>
+  <h2>{{ money(pot.cents)|replace('.00', '') }} this month</h2>
+  <p>Every month, the partner with the most reviews that count wins the pot: at least {{ pot_min }}, with {{ level_rate }}% of their rated reviews counting. If nobody qualifies, it grows by {{ pot_step|replace('.00', '') }} for next month, up to {{ pot_max|replace('.00', '') }}. One win per person in phase 1, so there's a new Diamond every month.</p>
+  {% if mine_row is not none %}<p class="note">You have <strong>{{ mine_row.counted }}</strong> review{{ '' if mine_row.counted == 1 else 's' }} counting in {{ pot.month_name }}{% if mine_row.counted < pot_min %}: {{ pot_min - mine_row.counted }} more to be in line{% endif %}.</p>{% endif %}
+  <h3>Leading in {{ pot.month_name }}</h3>
+  {% if pot.board %}
+  <div class="table-wrap"><table class="rate-table board">
+    <tr><th></th><th>Partner</th><th>Reviews counting</th><th>Viewers agreeing</th></tr>
+    {% for b in pot.board %}<tr><td>{{ loop.index }}</td><td><a href="/r/{{ b.handle }}">{{ b.name }}</a>{% if b.won_before %} <span class="badge diamond">Diamond</span>{% endif %}</td><td>{{ b.counted }}{% if b.in_line %} <span class="fine">in line</span>{% endif %}</td><td>{{ b.agreement }}%</td></tr>{% endfor %}
+  </table></div>
+  {% else %}<p class="fine">No reviews have counted yet this month. The first partner to {{ pot_min }} takes the lead.</p>{% endif %}
+  {% if pot.hall %}<h3>Hall of Diamonds</h3>
+  <ul class="hall">{% for h in pot.hall %}<li><strong>{{ h.month }}</strong>: <a href="/r/{{ h.handle }}">{{ h.name }}</a>, {{ money(h.cents)|replace('.00', '') }}</li>{% endfor %}</ul>{% endif %}
+  <p class="fine">{% if pot.typical is not none %}The typical partner earned {{ money(pot.typical) }} in {{ pot.typical_month }}. Most partners earn far less than the pot.{% else %}This is the program's first month, so there's no typical figure yet. Most partners will earn far less than the pot.{% endif %} The winner is checked by a person before the pot is paid.</p>
+</section>
+{% endmacro %}
+{% block body %}
+{% if mine %}
+<section class="head earn-hero">
+  <p class="eyebrow">HackerTube Partner Program</p>
+  <h1>Your earnings</h1>
+  {% if pilot and not pilot.every %}<p class="fine">Phase 1 pays for reviews of <strong>{{ pilot.name }}</strong> videos, the ones in <a href="/week">this week's 10</a>. More topics open as the program grows.</p>{% endif %}
+  {% if claim_msg %}<p class="note">{{ claim_msg }}</p>{% endif %}
+  {% if msg == 'paypal-saved' %}<p class="note">Saved. We'll pay you at that PayPal address.</p>{% elif msg == 'paypal-invalid' %}<p class="note">That doesn't look like an email address. Try again.</p>{% elif msg == 'paypal-taken' %}<p class="note">That PayPal address is already used by another partner. Each person can have one partner account.</p>{% elif msg == 'approved' %}<p class="note">You're a partner. Claim a paid spot on one of <a href="/week">this week's 10</a> to start earning.</p>{% endif %}
+</section>
+
+<section class="earn-cards">
+  <div class="earn-card">
+    <p class="ec-label">Earned in {{ mine.month_name }} so far</p>
+    <p class="ec-big">{{ money(mine.row.total_cents) }}</p>
+    <p class="fine">{{ mine.row.counted }} review{{ '' if mine.row.counted == 1 else 's' }} counted{% if mine.row.first_ever %}, including your first ({{ first_review|replace('.00', '') }}){% endif %}{% if mine.row.finds %}, and {{ mine.row.finds }} finder fee{{ '' if mine.row.finds == 1 else 's' }}{% endif %}.</p>
+  </div>
+  <div class="earn-card">
+    <p class="ec-label">Your level</p>
+    <p class="ec-big">{{ mine.level.name }}</p>
+    <p class="fine">{{ mine.level.spots }} paid spots a week{% if mine.level.early %}, claims open {{ mine.level.early }} hours early{% endif %}. {% if mine.level.next %}{% if mine.level.rate_ok %}{{ mine.level.next.more }} more review{{ '' if mine.level.next.more == 1 else 's' }} that count for {{ mine.level.next.name }} ({{ mine.level.next.spots }} spots).{% else %}{{ level_rate }}% of your rated reviews need to count to move up.{% endif %}{% else %}The top level.{% endif %}</p>
+  </div>
+  <div class="earn-card">
+    <p class="ec-label">{% if mine.money.first %}Your first payment{% else %}Next payment{% endif %}</p>
+    <p class="ec-big">{{ money(mine.money.payable) }}</p>
+    <div class="ec-bar" role="progressbar" aria-valuenow="{{ mine.money.pct }}" aria-valuemin="0" aria-valuemax="100"><span style="width:{{ mine.money.pct }}%"></span></div>
+    <p class="fine">{% if mine.money.first %}{% if mine.money.due %}Paid within {{ first_pay_days }} days.{% else %}Paid within {{ first_pay_days }} days of reaching {{ money(mine.money.threshold)|replace('.00', '') }}.{% endif %}{% else %}{% if mine.money.due %}{% if mine.due_by %}Paid by {{ mine.due_by }}.{% else %}Payment is due now.{% endif %}{% else %}Paid by the {{ pay_day }}th once finished months reach {{ money(mine.money.threshold)|replace('.00', '') }}.{% endif %}{% if mine.money.live %} {{ money(mine.money.live) }} from {{ mine.month_name }} joins it on the 1st.{% endif %}{% endif %}</p>
+  </div>
+</section>
+
+<section class="card-box" id="spots">
+  <h2>Your paid spots this week: {{ mine.spots_used }} of {{ mine.level.spots }} used</h2>
+  {% if mine.claims %}
+  <ul class="spot-list">
+    {% for c in mine.claims %}<li><a href="{{ c.v.url }}#spot">{{ c.v.title }}</a>: {% if c.state == 'held' %}<strong>held for you until {{ c.until }}</strong>{% if c.carried %} (from last week's 10){% endif %}. Watch it and post your review.{% elif c.state == 'used' %}review posted, viewers are rating it.{% elif c.state == 'released' %}given back.{% else %}not used in time, so the spot was lost.{% endif %}</li>{% endfor %}
+  </ul>
+  {% endif %}
+  {% if not week %}<p class="fine">This week's 10 isn't ready yet.</p>
+  {% elif mine.spots_left and mine.open_now %}<p><a class="btn" href="/week">Claim a spot on this week's 10</a> <span class="fine">{{ spots_left }} paid spots left for everyone this week.</span></p>
+  {% elif mine.spots_left %}<p class="fine">Your paid spots open on {{ mine.opens }}.</p>
+  {% else %}<p class="fine">You've used this week's spots. New ones open on {{ next_drop }}.</p>{% endif %}
+  <p class="fine">A claimed spot is yours for {{ hold_hours }} hours. A spot you don't use is lost for the week, so only claim what you'll review.</p>
+</section>
+
+{{ pot_box(pot, mine.row) }}
+
+<section class="card-box" id="payment">
+  <h2>Payment method</h2>
+  <form method="post" action="/earn/paypal" class="earn-cta">
+    <input name="paypal" type="email" value="{{ mine.paypal }}" maxlength="254" placeholder="Your PayPal email" aria-label="Your PayPal email">
+    <button class="btn ghost" type="submit">Save</button>
+  </form>
+  <p class="fine">{% if mine.paypal %}We pay {{ mine.paypal }} through PayPal.{% else %}Add it before your first payment.{% endif %} One PayPal account per partner. Want a bank transfer instead? Reply to our payment email. The site never asks for bank details.</p>
+</section>
+
+<section class="card-box">
+  <h2>Your paid reviews</h2>
+  {% if mine.lines %}
+  <div class="table-wrap"><table class="admin-table">
+    <tr><th>Video</th><th>Status</th><th>Earned</th></tr>
+    {% for l in mine.lines %}
+    <tr><td><a href="{{ l.v.url }}">{{ l.v.title }}</a></td>
+      <td>{% if l.mod == 'hidden' %}Held back by the automatic check{% elif l.status == 'waiting' %}Waiting for viewers: {{ l.judged }} of {{ panel }} rated{% elif l.status == 'qualified' and not l.original %}Counted, but too close to another review to earn{% elif l.status == 'qualified' %}Counted, {{ l.agree }} of {{ panel }} agree{% if l.first_ever %}, your first{% endif %}{% if l.when %} ({{ l.when }}){% endif %}{% else %}Didn't count: {{ l.agree }} of {{ panel }} agree{% endif %}</td>
+      <td>{% if l.cents %}{{ money(l.cents) }}{% endif %}</td></tr>
+    {% endfor %}
+  </table></div>
+  {% else %}<p class="fine">No paid reviews yet. Claim a spot on <a href="/week">this week's 10</a>, watch the video, and post your review.</p>{% endif %}
+</section>
+
+<section class="card-box">
+  <h2>Payment history</h2>
+  {% if mine.money.statements or mine.money.payouts %}
+  <div class="table-wrap"><table class="admin-table">
+    <tr><th>When</th><th>What</th><th>Amount</th></tr>
+    {% for p in mine.money.payouts %}<tr><td>{{ day(p.ts) }}</td><td>Paid by {{ p.method }}{% if p.to %} to {{ p.to }}{% endif %}</td><td>{{ money(p.cents) }}</td></tr>{% endfor %}
+    {% for s in mine.money.statements %}<tr><td>{{ month_name(s.month) }}</td><td>{% if s.kind == 'pot' %}Diamond pot{% else %}Finalised: {{ s.counted }} review{{ '' if s.counted == 1 else 's' }} counted{% if s.finds %}, {{ s.finds }} finder fee{{ '' if s.finds == 1 else 's' }}{% endif %}{% endif %}</td><td>{{ money(s.total_cents) }}</td></tr>{% endfor %}
+  </table></div>
+  {% else %}<p class="fine">Nothing yet. Each month is finalised on the 1st.</p>{% endif %}
+</section>
+
+<details class="more"><summary>How it works</summary>
+  {{ levels_table(mine.level.key) }}
+  <p class="fine">Your link: <input class="share-link" readonly value="{{ mine.share_link }}" onclick="this.select()"> People who come through it can't rate your reviews, so share it for people to read, not to rate. <a href="/terms#partners">Full terms</a></p>
+</details>
+{% else %}
+<section class="head earn-hero">
+  <p class="eyebrow">HackerTube Partner Program</p>
+  <h1>Get monetised from your first review</h1>
+  <p class="earn-number">{{ review|replace('.00', '') }} for every review viewers agree with.{% if pot %} A {{ money(pot.cents)|replace('.00', '') }} Diamond pot every month.{% endif %}</p>
+  <p class="lede">No subscribers or watch hours needed. Your first {{ first_cashout|replace('.00', '') }} is paid within a week.</p>
+  {% if not pilot %}<p class="fine">Monetisation opens soon.</p>
+  {% elif not user %}
+  <p class="earn-cta"><a class="btn" href="/auth/login?next=/earn">Sign in to join</a></p>
+  {% elif status == 'applied' %}
+  <p class="earn-status"><strong>Monetisation: under review.</strong> We'll look at your reviews and let you know.</p>
+  {% elif status == 'rejected' %}
+  <p class="earn-status"><strong>Not approved.</strong> Keep reviewing videos you watch here. Your public page is what we look at.</p>
+  {% else %}
+  {% if not pilot.every %}<p class="fine">Phase 1 pays for reviews of <strong>{{ pilot.name }}</strong> videos only. More topics open as the program grows.</p>{% endif %}
+  <form method="post" action="/hackers/apply" class="earn-cta">
+    <input name="why" maxlength="300" placeholder="What do you know well? (optional)" aria-label="What do you know well? (optional)">
+    <button class="btn" type="submit">Join now</button>
+  </form>
+  {% endif %}
+  {% if pilot %}
+  <div class="earn-stats">
+    <div><strong>{{ spots_left }}</strong><span>paid spots left this week</span></div>
+    {% if pot %}<div><strong>{{ money(pot.cents)|replace('.00', '') }}</strong><span>Diamond pot this month</span></div>{% endif %}
+    {% if next_drop %}<div><strong>{{ next_drop.split(',')[0] }}</strong><span>next 10 videos drop</span></div>{% endif %}
+  </div>
+  {% endif %}
+</section>
+
+<ol class="earn-steps">
+  <li><span class="n">1</span><h2>Claim a spot</h2><p>Every Monday we pick <a href="/week">10 videos</a>. Each has {{ paid_spots }} paid review spots. Claim one, and it's yours for {{ hold_hours }} hours.</p></li>
+  <li><span class="n">2</span><h2>Write a short review</h2><p>Who it's for, what to know first, and the moment worth jumping to. Recommend it or say skip: both pay the same.</p></li>
+  <li><span class="n">3</span><h2>Get paid</h2><p>When at least {{ qualify }} of its first {{ panel }} viewers agree, you earn {{ review|replace('.00', '') }}. Your very first one pays {{ first_review|replace('.00', '') }}.</p></li>
+</ol>
+
+{% if pot %}{{ pot_box(pot) }}{% endif %}
+
+<section class="card-box">
+  <h2>Levels: more spots, sooner</h2>
+  {{ levels_table() }}
+</section>
+
+<section class="card-box fair">
+  <h2>Why it can't be gamed</h2>
+  <ul>
+    <li><strong>Real viewers decide.</strong> A review counts only when people who watched the video here agree with it. They aren't partners and they're never paid.</li>
+    <li><strong>Five different people.</strong> Each review's {{ panel }} judges must be on {{ panel }} different networks and browsers. One viewer counts on at most {{ judge_per_author }} of your reviews, and people who came through your link can't rate yours.</li>
+    <li><strong>No flooding, by hand or with AI.</strong> Paid spots are limited every week. Copied, templated or generic reviews don't earn, and an automatic check holds back spam.</li>
+    <li><strong>One person, one account.</strong> One PayPal account per partner. Every payment, and every Diamond pot, is checked by a person before it's sent.</li>
+  </ul>
+  <p class="fine">We never pay for watching, liking, sharing or subscribing. Paid reviews carry a "Paid partner" label.</p>
+</section>
+
+{% if week_videos %}
+<section class="row">
+  <div class="row-h"><h2>This week's 10</h2><a href="/week">See all and claim a spot</a></div>
+  {{ grid(week_videos) }}
+</section>
+{% endif %}
+
+<p class="fine">Phase 1: paid spots are limited each month, and when they're gone more open on the 1st. Payments by PayPal: the first from {{ first_cashout|replace('.00', '') }} within a week, then monthly from {{ cashout|replace('.00', '') }} by the {{ pay_day }}th. Rules can change for future weeks with notice; anything already earned is always paid. The Partner Program is ours alone and has nothing to do with YouTube's own monetisation. <a href="/terms#partners">Full terms</a></p>
+{% endif %}
+{% endblock %}

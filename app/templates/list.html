@@ -1,0 +1,24 @@
+{% extends "base.html" %}{% from "_macros.html" import grid %}
+{% block body %}
+<section class="head">
+  {% if crumb %}<p class="crumb"><a href="/topics">Topics</a> › {{ crumb }}</p>{% endif %}
+  <h1>{{ heading }}</h1>
+  <p class="lede">{{ intro }}</p>
+  {% for para in paragraphs if para %}<p class="topic-intro">{{ para }}</p>{% endfor %}
+  {% if filters %}<div class="chips field-chips">{% for f in filters %}<a class="chip{% if f.on %} on{% endif %}" href="{{ f.href }}"{% if f.on %} aria-current="page"{% endif %}>{{ f.label }} <span>{{ "{:,}".format(f.n) }}</span></a>{% endfor %}</div>{% endif %}
+</section>
+{% if waiting %}<section class="row" data-row="waiting"><div class="row-h"><h2>Partners reviewed these</h2><span class="row-n">Watch one and say if you agree with the review</span></div>{{ grid(waiting) }}</section>{% endif %}
+{% if videos %}{{ grid(videos) }}{% elif q %}<p class="empty">No matches. Try a broader topic.</p>{% endif %}
+{% if related %}
+<section class="related-topics">
+  <h2>Related topics</h2>
+  <div class="chips">{% for c in related %}<a class="chip" href="/topics/{{ c.id }}">{{ c.name }} <span>{{ c.vids|length }}</span></a>{% endfor %}</div>
+</section>
+{% endif %}
+{% if not pro %}
+<section class="pro-band">
+  <div><h2>Which of these have you already seen?</h2><p>Connect YouTube and HackerTube AI hides what you've watched and ranks the rest for you.</p></div>
+  <a class="btn" href="/pro">Get Pro for {{ PRICE }}</a>
+</section>
+{% endif %}
+{% endblock %}

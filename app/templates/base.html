@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}{% if title and SITE not in title %} | {{ SITE }}{% endif %}</title>
+{% if description %}<meta name="description" content="{{ description }}">{% endif %}
+<link rel="canonical" href="{{ canonical }}">
+{% if noindex %}<meta name="robots" content="noindex,follow">{% endif %}
+<meta property="og:site_name" content="{{ SITE }}">
+<meta property="og:type" content="{% if v %}video.other{% else %}website{% endif %}">
+<meta property="og:title" content="{{ title }}">
+{% if description %}<meta property="og:description" content="{{ description }}">{% endif %}
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ og_image or (BASE_URL + '/static/og.png') }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ title }}">
+{% if description %}<meta name="twitter:description" content="{{ description }}">{% endif %}
+<meta name="twitter:image" content="{{ og_image or (BASE_URL + '/static/og.png') }}">
+<meta name="theme-color" content="#0f0f10">
+<link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="preconnect" href="https://i.ytimg.com">
+<link rel="stylesheet" href="/static/style.css?v=20">
+{% include "_analytics.html" %}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"{{ SITE }}","url":"{{ BASE_URL }}/","potentialAction":{"@type":"SearchAction","target":"{{ BASE_URL }}/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
+{% for ld in jsonld or [] %}<script type="application/ld+json">{{ ld | tojson }}</script>
+{% endfor %}
+</head>
+<body>
+<header class="top">
+  <a class="logo" href="/" aria-label="{{ SITE }} home"><span class="lh">Hacker</span><span class="lt">Tube</span><span class="lai">AI</span></a>
+  <form class="search" action="/search" method="get" role="search">
+    <input name="q" type="search" placeholder="Search talks" value="{{ q or '' }}" aria-label="Search" id="q">
+  </form>
+  <nav class="nav">
+    <a href="/topics">Topics</a>
+    <a href="/longs" class="hide-sm">Longs</a>
+    {% if NOTES_ON and EARN_ON() %}<a href="/earn" class="earn hide-sm" data-from="header">Earn</a>{% endif %}
+    {% if NOTES_ON %}<a href="/submit" class="hide-sm">Submit</a>{% endif %}
+    {% if user %}
+      <a href="/connect" class="hide-sm">Sources</a>
+      <a href="/me" class="me">{% if user.picture %}<img src="{{ user.picture }}" alt="" width="26" height="26" referrerpolicy="no-referrer">{% endif %}<span class="hide-sm">{% if pro %}Pro{% else %}You{% endif %}</span></a>
+    {% else %}
+      <a href="/auth/login?next={{ request.url.path }}" class="btn ghost">Sign in</a>
+    {% endif %}
+  </nav>
+</header>
+<main>
+{% block body %}{% endblock %}
+</main>
+<footer class="foot">
+  <p><strong>{{ SITE }}</strong> is an independent project built on the open <a href="https://hackertube.org/data" rel="noopener">HackerTube dataset</a> (ODC-By 1.0) and the <a href="https://huggingface.co/datasets/open-index/hacker-news" rel="noopener">open-index/hacker-news</a> archive. Not affiliated with hackertube.org, Andrej Karpathy, Hacker News, Y Combinator, YouTube or Google. Video data from the YouTube Data API.</p>
+  <p><a href="/about">About</a> · <a href="/karpathy-hackertube">What is HackerTube?</a> · <a href="/build-your-own-hackertube">Build your own</a> · <a href="/pro">Pro</a>{% if NOTES_ON and EARN_ON() %} · <a href="/earn" data-from="footer">Earn</a>{% endif %}{% if NOTES_ON %} · <a href="/submit">Submit a video</a>{% endif %} · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="https://www.youtube.com/t/terms" rel="noopener">YouTube Terms</a> · <a href="{{ SOURCE_URL }}" rel="noopener">Source code</a></p>
+</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>window.HT={loggedIn:{{ 'true' if user else 'false' }},pro:{{ 'true' if pro else 'false' }},likes:{{ likes|tojson }},later:{{ later|tojson }},hidden:{{ (hidden or [])|tojson }},seen:{{ (seen or [])|tojson }}};</script>
+<script src="/static/app.js?v=11" defer></script>
+</body>
+</html>

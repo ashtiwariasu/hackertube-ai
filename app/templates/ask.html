@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="hero shot-hero">
+  <h1>Your AI already knows what you're into. Ask it.</h1>
+  <p class="lede">Copy one prompt into ChatGPT, Claude or Gemini, paste the answer back, and see the talks Hacker News recommends for exactly what you work on and want to learn. No account needed.</p>
+</section>
+
+<section class="ask-steps">
+  <div class="ask-step">
+    <p class="ask-n">1</p>
+    <h2>Copy the prompt into your AI</h2>
+    <pre class="ask-prompt" id="prompt">{{ prompt }}</pre>
+    <div class="cta-row">
+      <button class="btn" type="button" id="copy">Copy prompt</button>
+      <a class="btn ghost" href="https://chatgpt.com/?q={{ prompt_q }}" target="_blank" rel="noopener">Open in ChatGPT</a>
+      <a class="btn ghost" href="https://claude.ai/new?q={{ prompt_q }}" target="_blank" rel="noopener">Open in Claude</a>
+      <a class="btn ghost" href="https://gemini.google.com/app" target="_blank" rel="noopener" data-copy-first>Open Gemini</a>
+    </div>
+    <p class="fine">Works best when your AI has memory switched on. No memory? Write a few lines about what you work on and want to learn instead.</p>
+  </div>
+  <div class="ask-step">
+    <p class="ask-n">2</p>
+    <h2>Paste its answer here</h2>
+    <textarea id="answer" rows="9" placeholder="Paste your AI's reply. Edit out anything you'd rather not share."></textarea>
+    <div class="cta-row"><button class="btn" type="button" id="go" disabled>Show my talks</button><button class="btn ghost" type="button" id="example">Try an example</button></div>
+    <p class="src-err" id="err" hidden></p>
+  </div>
+</section>
+
+<div class="progress" id="progress" hidden><div class="spinner" aria-hidden="true"></div><p id="progress-text">Reading your profile…</p></div>
+<div id="results" aria-live="polite"></div>
+
+<section class="prose how">
+  <h2>What happens to what you paste</h2>
+  <p>A model reads it once and turns it into a short list of topics, tools, creators and preferences. It is told to drop anything about health, money, relationships, religion, politics or location. We keep that short list, never the text you pasted. <a href="/privacy">Privacy policy</a>.</p>
+</section>
+<script src="/static/ask.js?v=1" defer></script>
+{% endblock %}

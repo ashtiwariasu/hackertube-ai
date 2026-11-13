@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="pricing">
+  <h1>Your own HackerTube</h1>
+  <p class="lede">The best of Hacker News, Stack Overflow and 100+ communities' recommendations, minus everything you've already watched.</p>
+  {% if request.query_params.get('msg') == 'signin-unavailable' %}<p class="note">Sign-in is being switched on. Please try again shortly.</p>{% endif %}
+  {% if cancelled %}<p class="note">Checkout cancelled. Nothing was charged.</p>{% endif %}
+  <div class="plans">
+    <div class="plan">
+      <h2>Free</h2>
+      <p class="price">$0</p>
+      <ul class="ticks">
+        <li>All {{ "{:,}".format(total) }} videos, topics and search</li>
+        <li>Who recommended every video, and why</li>
+        <li>Likes and Watch later</li>
+        <li>Sync across devices with Google sign-in</li>
+        <li>See how many HN essentials you've watched</li>
+      </ul>
+    </div>
+    <div class="plan hot">
+      <h2>Pro</h2>
+      <p class="price">{{ PRICE }} <span>once</span></p>
+      <ul class="ticks">
+        <li>Everything in Free</li>
+        <li>Connect YouTube: likes and subscriptions shape your feed</li>
+        <li>Import Google Takeout watch history</li>
+        <li>The essentials you've never watched, as a list</li>
+        <li>"For you" feed on the home page, refreshed daily</li>
+        <li>Supports keeping the site running</li>
+      </ul>
+      {% if pro %}
+        <a class="btn wide" href="/me">You're Pro. Open your feed</a>
+      {% elif user %}
+        <form method="post" action="/pro/checkout"><button class="btn wide" type="submit">Get Pro for {{ PRICE }}</button></form>
+      {% else %}
+        <a class="btn wide" href="/auth/login?next=/pro">Sign in with Google to continue</a>
+      {% endif %}
+      <p class="fine">Secure checkout by Stripe. Charged in US dollars. No subscription.</p>
+    </div>
+  </div>
+  <div class="prose">
+    <h2>How personalisation works</h2>
+    <p>When you connect YouTube we read your liked videos and subscriptions once, with read-only access. We keep only what the feed needs: which catalogue videos you've liked, which catalogue channels you follow, and a numeric taste profile. We don't keep your access token or your raw YouTube data, and you can delete everything from your account page or revoke access in your <a href="https://myaccount.google.com/permissions" rel="noopener">Google account settings</a>.</p>
+    <p>YouTube no longer lets apps read watch history directly, so for history you upload your Google Takeout file. We keep only the matches against the catalogue.</p>
+  </div>
+</section>
+{% endblock %}

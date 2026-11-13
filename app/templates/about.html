@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block body %}
+<article class="prose">
+  <h1>About HackerTube AI</h1>
+  <p class="lede">{{ "{:,}".format(total) }} YouTube videos that Hacker News commenters keep recommending to each other, with a personal layer on top.</p>
+  <h2>Where the videos come from</h2>
+  <p>The catalogue is the open <a href="https://hackertube.org/data" rel="noopener">HackerTube dataset</a>, created for hackertube.org, which was prompted into existence by Andrej Karpathy and built by Claude. It was made by reading every Hacker News comment from 2007 to 2026, keeping videos that at least three different people recommended in at least three different months, and having Claude label each comment and write each video card. We removed videos that are now deleted, private or not embeddable.</p>
+  <h2>Beyond Hacker News</h2>
+  <p>The same rule now runs on Stack Overflow and over 100 other Stack Exchange sites (data dump to March 2026, CC BY-SA 4.0; quotes link back to their authors), and Hacker News is refreshed weekly. A video joins when at least 3 different people in one community recommended it in at least 3 different months. Each video shows which communities vouched for it, and how many English Wikipedia articles cite it. Bluesky is being collected now and joins once enough months accumulate.</p>
+  <h2>What we add</h2>
+  <p>Stack Exchange and the open web as sources next to Hacker News; a personal shortlist that says why each pick fits you, started from your GitHub, Hacker News, YouTube or a few words; and a player that learns from what you actually watch.</p>
+  <h2>Open source and open data</h2>
+  <p>The code behind this site is open source under the MIT licence, on <a href="{{ SOURCE_URL }}" rel="noopener">GitHub</a>. The whole catalogue is published as open data (ODC-By 1.0), including a copy in HackerTube's own format so anything built on HackerTube's data can use it: <a href="{{ SOURCE_URL }}/releases" rel="noopener">download it from the releases page</a>.</p>
+  <h2>Credits and licence</h2>
+  <p>Dataset by HackerTube (hackertube.org), ODC-By 1.0, derived from the <a href="https://huggingface.co/datasets/open-index/hacker-news" rel="noopener">open-index/hacker-news</a> archive. Hacker News data is provided by Y Combinator; comments remain the work of their authors. Video titles and channel names belong to their creators. Labels and summaries were written by an AI model and may contain errors.</p>
+  <p>HackerTube AI is an independent project{% if OPERATOR.name %} by {{ OPERATOR.name }}{% endif %}. It is not affiliated with hackertube.org, Andrej Karpathy, Hacker News, Y Combinator, YouTube or Google.</p>
+</article>
+{% endblock %}

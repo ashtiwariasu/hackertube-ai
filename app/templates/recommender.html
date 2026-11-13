@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="head">
+  <h1>{{ name }}{% if is_hacker %} <span class="pill">Partner</span>{% endif %}</h1>
+  <p class="lede">Reviews on HackerTube AI, and how many viewers agreed. A review counts when at least {{ qualify }} of its first {{ panel }} viewers agree.</p>
+</section>
+<section class="row rec-sum">
+  <div class="stat"><div class="big">{{ rec.notes }}</div><p>reviews</p></div>
+  <div class="stat"><div class="big">{{ rec.qualified }}</div><p>agreed by viewers</p></div>
+  <div class="stat"><div class="big">{{ rec.first }}</div><p>first to spot it</p></div>
+  {% if rec.agreement is not none %}<div class="stat"><div class="big">{{ (rec.agreement * 100)|round|int }}%</div><p>of viewers agreed</p></div>{% endif %}
+</section>
+<section class="note-rows">
+  {% for r in rows %}
+  <article class="note-row">
+    <a class="nr-thumb" href="{{ r.v.url }}"><img src="https://i.ytimg.com/vi/{{ r.v.vid }}/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></a>
+    <div class="nr-body">
+      <h2><a href="{{ r.v.url }}">{{ r.v.title }}</a></h2>
+      <p class="hnh"><span class="badge">{{ 'Recommends' if r.n.stance == 'rec' else 'Says skip' }}</span> {{ r.n.when }}{% if r.n.first %} · <span class="badge first">First to spot it</span>{% endif %}{% if r.n.paid %} · <span class="badge paid">Paid partner</span>{% endif %}</p>
+      <p>{{ r.n.text }}</p>
+      <p class="fine">{% if r.n.status == 'waiting' %}Waiting for viewers to rate it: {{ r.n.judged }} of {{ panel }} so far.{% else %}{{ r.n.agree }} of {{ panel }} viewers agree.{% endif %}</p>
+    </div>
+  </article>
+  {% endfor %}
+</section>
+<p class="fine">Reviews come from people on HackerTube AI, not from YouTube. <a href="/terms#notes">How reviews work</a></p>
+{% endblock %}

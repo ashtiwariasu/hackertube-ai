@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="hero shot-hero">
+  <h1>Show us your YouTube. We'll show you what you've missed.</h1>
+  <p class="lede">Screenshot your YouTube history, liked videos or subscriptions and drop it here. We read the titles, check them against {{ "{:,}".format(total) }} videos Hacker News, Stack Overflow and 100+ communities keep recommending, and show you the ones you haven't watched. The image is read once and never kept.</p>
+</section>
+
+<div class="drop" id="drop" tabindex="0" aria-label="Drop screenshots here">
+  <input type="file" id="file" accept="image/png,image/jpeg,image/webp" multiple hidden>
+  <p class="drop-main">Drop screenshots here, paste them, or <button type="button" class="linkish" id="choose">choose files</button></p>
+  <p class="fine">Up to four images. On a phone, screenshot the YouTube app and share it here.</p>
+  <div class="previews" id="previews"></div>
+  <div class="drop-actions">
+    <button class="btn" id="go" type="button" disabled>Read my screenshots</button>
+    <button class="btn ghost" id="sample" type="button">Try it with a sample</button>
+  </div>
+  <p class="src-err" id="err" hidden></p>
+</div>
+
+<div class="progress" id="progress" hidden>
+  <div class="spinner" aria-hidden="true"></div>
+  <p id="progress-text">Reading the titles…</p>
+</div>
+
+<div id="results" aria-live="polite"></div>
+
+<section class="prose how" id="how">
+  <h2>How to take the screenshot</h2>
+  <ol>
+    <li>Open <a href="https://www.youtube.com/feed/history" rel="noopener" target="_blank">youtube.com/feed/history</a>, or your Liked videos, or Subscriptions.</li>
+    <li>Take a screenshot. A long one is fine. On a Mac: Shift, Command and 4. On Windows: Windows key, Shift and S. On a phone, screenshot the YouTube app.</li>
+    <li>Drop it above. Add up to four for a longer history.</li>
+  </ol>
+  <h2>What happens to the image</h2>
+  <p>A vision model reads the video titles and channel names, then the image is discarded. We keep the titles we read and which ones matched the catalogue, nothing else. <a href="/privacy">Privacy policy</a>.</p>
+</section>
+<script src="/static/screenshot.js?v=2" defer></script>
+{% endblock %}

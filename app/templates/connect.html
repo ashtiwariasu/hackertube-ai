@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block body %}
+{% set msgs = {
+ 'youtube-connected': 'YouTube connected.',
+ 'youtube-failed': "We couldn't read your YouTube data. Try again, or use another source.",
+ 'youtube-not-granted': 'YouTube access was not granted. Tick the YouTube box on the Google screen to connect.',
+ 'history-imported': 'Watch history imported.',
+ 'history-empty': 'No YouTube videos found in that file. Upload watch-history.json or watch-history.html from Takeout.',
+ 'history-unreadable': "We couldn't read that file.",
+ 'discord-connected': 'Discord connected.',
+ 'discord-failed': "Discord didn't complete the sign-in. Try again.",
+ 'discord-unavailable': 'Discord connect is not switched on yet.'} %}
+<section class="head">
+  <h1>Build your HackerTube</h1>
+  <p class="lede">Flip on the places you already are. We read public data once, keep only a taste profile, and you can switch anything off.</p>
+  {% if msg in msgs %}<p class="note">{{ msgs[msg] }}</p>{% endif %}
+</section>
+
+<section class="profile-card">
+  <div class="pc-left">
+    <p class="pc-label">You're into</p>
+    <p class="pc-interests" id="pc-interests">{% if profile.interests %}{{ profile.interests|join(', ') }}{% else %}Nothing yet. Flip a switch below.{% endif %}</p>
+    <p class="pc-label" id="pc-count">{% set n = profile.sources.values()|selectattr('on')|list|length %}{{ n }} source{% if n != 1 %}s{% endif %}</p>
+  </div>
+  <div class="pc-right">
+    <div class="big"><span id="pc-seen">{{ profile.seen_ess }}</span><span class="dim">/{{ profile.ess_total }}</span></div>
+    <p>HN essentials watched</p>
+  </div>
+</section>
+
+{% if show_found %}
+<section class="found" id="found">
+  <p>From your email we found {% if lookup.found.github %}GitHub <strong>@{{ lookup.found.github }}</strong>{% endif %}{% if lookup.found.github and lookup.found.website %} and {% endif %}{% if lookup.found.website %}a site at <strong>{{ lookup.found.website }}</strong>{% endif %}. Is that you?</p>
+  <div class="cta-row"><button class="btn" type="button" data-lookup="yes">Yes, use them</button><button class="btn ghost" type="button" data-lookup="no">No, that's not me</button></div>
+</section>
+{% endif %}
+
+{% macro source_row(s) -%}
+<div class="src" data-source="{{ s.name }}" data-kind="{{ s.kind }}" data-state="{{ 'on' if s.on else 'off' }}" data-what="{{ s.what }}"{% if s.auth_url %} data-auth="{{ s.auth_url }}"{% endif %}>
+  <div class="src-row">
+    <span class="src-badge">{{ s.badge }}</span>
+    <div class="src-text">
+      <p class="src-name">{{ s.title }}</p>
+      <p class="src-sub" data-sub>{% if s.on and s.label %}{{ s.label }}{% else %}{{ s.what }}{% endif %}</p>
+    </div>
+    <button class="switch" type="button" role="switch" aria-checked="{{ 'true' if s.on else 'false' }}" aria-label="{{ s.title }}"><span class="knob"></span></button>
+  </div>
+  {% if s.kind == 'handle' %}
+  <form class="src-form" data-form{% if not s.on %} hidden{% endif %}>
+    <input type="text" name="handle" placeholder="{{ s.placeholder }}" value="{{ s.handle or '' }}" autocomplete="off" spellcheck="false"{% if s.on %} disabled{% endif %}>
+    <button class="btn" type="submit"{% if s.on %} hidden{% endif %}>Connect</button>
+    <a href="#" class="linkish small" data-change{% if not s.on %} hidden{% endif %}>Change</a>
+  </form>
+  {% elif s.kind == 'shots' %}
+  <form class="src-form" data-form data-shots{% if not s.on %} hidden{% endif %}>
+    <input type="file" name="files" accept="image/png,image/jpeg,image/webp" multiple required>
+    <button class="btn" type="submit">Read screenshots</button>
+    <p class="fine">Your YouTube history, liked videos or subscriptions. Up to four images. <a href="/screenshot">See it without signing in</a>.</p>
+  </form>
+  {% elif s.kind == 'picks' %}
+  <div class="src-form picks" data-form{% if not s.on %} hidden{% endif %}>
+    <div class="pick-grid">
+      {% for v in candidates %}
+      <button type="button" class="pick{% if v.vid in picked %} sel{% endif %}" data-vid="{{ v.vid }}" aria-pressed="{{ 'true' if v.vid in picked else 'false' }}">
+        <img src="https://i.ytimg.com/vi/{{ v.vid }}/mqdefault.jpg" alt="" loading="lazy" width="320" height="180">
+        <span>{{ v.title }}</span>
+      </button>
+      {% endfor %}
+    </div>
+    <div class="pick-bar"><span data-pick-count>{{ picked|length }} picked</span><button class="btn" type="button" data-pick-save{% if picked|length < 3 %} disabled{% endif %}>Use these</button></div>
+  </div>
+  {% elif s.kind == 'file' %}
+  <form class="src-form" data-form method="post" action="/me/import-history" enctype="multipart/form-data"{% if not s.on %} hidden{% endif %}>
+    <input type="hidden" name="next" value="/connect">
+    <input type="file" name="file" accept=".json,.html,.zip" required>
+    <button class="btn ghost" type="submit">Upload</button>
+    <p class="fine">At <a href="https://takeout.google.com/" rel="noopener" target="_blank">Google Takeout</a>, deselect all, tick "YouTube and YouTube Music", choose only "history", then upload the watch-history file or the whole zip.</p>
+  </form>
+  {% endif %}
+  <p class="src-err" data-err hidden></p>
+</div>
+{%- endmacro %}
+
+<section class="sources">
+{% for s in primary %}{{ source_row(s) }}{% endfor %}
+</section>
+<details class="more"{% if more|selectattr('on')|list %} open{% endif %}>
+  <summary>More sources</summary>
+  <section class="sources">
+  {% for s in more %}{{ source_row(s) }}{% endfor %}
+  </section>
+</details>
+
+<div id="feed-wrap">{% include "_feed.html" %}</div>
+
+<p class="fine center"><a href="/">Skip for now</a> · Everything here is read-only and public, or your own upload. <a href="/privacy">What we keep.</a></p>
+<script src="/static/connect.js?v=3" defer></script>
+{% endblock %}

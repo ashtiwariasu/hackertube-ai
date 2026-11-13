@@ -1,0 +1,8 @@
+{% from "_macros.html" import grid %}
+{% for title, sub, vids in rows %}
+<section class="row">
+  <div class="row-h"><h2>{{ title }}{% if scope_label %} in {{ scope_label }}{% endif %}</h2>{% if loop.first and pool_n %}<span class="row-n">{{ "{:,}".format(pool_n) }} videos</span>{% endif %}</div>
+  <p class="row-sub">{{ sub }}</p>
+  {{ grid(vids) }}
+</section>
+{% endfor %}

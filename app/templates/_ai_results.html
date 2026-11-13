@@ -1,0 +1,32 @@
+{% from "_macros.html" import grid %}
+<section class="shot-stats">
+  <div class="tile"><div class="num">{{ r.profile.topics|length }}</div><p>topics your AI says you care about</p></div>
+  <div class="tile"><div class="num">{{ r.creators_found|length }}</div><p>creators you like that Hacker News recommends</p></div>
+  <div class="tile"><div class="num">{{ r.picks|length }}</div><p>talks picked for you below</p></div>
+</section>
+{% if r.interests and r.confidence != 'weak' %}<p class="shot-taste">You read as <strong>{{ r.interests|join(', ') }}</strong>.</p>
+{% elif r.interests %}<p class="shot-taste">Your interests sit mostly outside Hacker News's usual territory. The closest HN areas are <strong>{{ r.interests[:3]|join(', ') }}</strong>.</p>{% endif %}
+{% if r.profile.topics %}<div class="chips ask-chips">{% for t in r.profile.topics[:12] %}<span class="chip">{{ t }}</span>{% endfor %}</div>{% endif %}
+
+{% if r.anchors %}
+<section class="row">
+  <div class="row-h"><h2>{% if r.creators_found %}From people you already like{% else %}Talks you named{% endif %}</h2></div>
+  {% if r.creators_found %}<p class="row-sub">{% for c in r.creators_found %}{{ c.name }}{% if not loop.last %}, {% endif %}{% endfor %}: Hacker News recommends their work.</p>{% endif %}
+  {{ grid(r.anchors) }}
+</section>
+{% endif %}
+
+<section class="row">
+  <div class="row-h"><h2>{% if r.confidence == 'weak' %}Where to start: the all-time classics{% else %}Picked for what you work on and want to learn{% endif %}</h2></div>
+  {% if r.profile.format == 'long' %}<p class="row-sub">Long-form first, since you prefer deep dives.</p>{% elif r.profile.format == 'short' %}<p class="row-sub">Shorter videos first, since you prefer quick explainers.</p>{% endif %}
+  {{ grid(r.picks) }}
+</section>
+
+{% if not user %}
+<section class="pro-band">
+  <div><h2>Keep this</h2><p>Sign in with Google to save this profile, add a YouTube screenshot or your GitHub, and get a feed that hides what you've already seen.</p></div>
+  <a class="btn" href="/auth/login?next=/connect">Sign in and save</a>
+</section>
+{% else %}
+<section class="pro-band"><div><h2>Saved to your profile</h2><p>This now shapes your feed on the Sources page.</p></div><a class="btn" href="/connect">Open your feed</a></section>
+{% endif %}

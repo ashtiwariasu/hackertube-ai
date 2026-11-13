@@ -1,0 +1,101 @@
+{% extends "base.html" %}{% from "_macros.html" import grid %}
+{% block body %}
+{% set msgs = {
+ 'youtube-connected': 'YouTube connected. Your feed is built.',
+ 'youtube-failed': "We couldn't read your YouTube data. Try again, or import Takeout history instead.",
+ 'youtube-not-granted': 'YouTube access was not granted. Tick the YouTube box on the Google screen to connect.',
+ 'history-imported': 'Watch history imported.',
+ 'history-empty': 'No YouTube videos found in that file. Upload watch-history.json or watch-history.html from Takeout.',
+ 'history-unreadable': "We couldn't read that file.",
+ 'data-deleted': 'Your YouTube and history data has been deleted.',
+ 'pro-welcome': "You're Pro. Thank you! Your feed is unlocked.",
+ 'name-saved': 'Saved. Your reviews now show that name.',
+ 'name-cleared': 'Name removed. Your reviews show your reviewer handle.',
+ 'name-invalid': 'Names can be 2 to 30 letters, numbers, spaces, dots, dashes or apostrophes.',
+ 'name-rejected': "That name can't be used. Try another.",
+ 'notes-deleted': 'Your verdicts, reviews and ratings have been deleted.'} %}
+<section class="head">
+  <h1>{% if user.name %}{{ user.name.split(' ')[0] }}'s HackerTube{% else %}Your HackerTube{% endif %}{% if pro %} <span class="pill">Pro</span>{% endif %}</h1>
+  {% if msg in msgs %}<p class="note">{{ msgs[msg] }}</p>{% endif %}
+  {% if msg == 'pro-welcome' and user and user.stripe_session %}<span id="ht-tx" data-tx="ht-{{ user.stripe_session[-16:] }}" hidden></span>{% endif %}
+</section>
+
+{% if user.interests %}<p class="lede">You're into {{ user.interests|join(', ') }}. <a href="/connect">Edit your sources</a></p>{% else %}<p class="lede"><a href="/connect">Connect your sources</a> to build your feed: GitHub, Hacker News, YouTube, Bluesky, your blog and more.</p>{% endif %}
+
+<section class="steps">
+  <div class="step{% if user.yt_connected_at %} done{% endif %}">
+    <h2>1. Connect YouTube</h2>
+    {% if user.yt_connected_at %}
+      <p>Connected. {{ user.yt_liked_total or 0 }} liked videos and {{ user.yt_subs_total or 0 }} subscriptions read; {{ (user.yt_liked_in_catalog or [])|length }} likes and {{ (user.yt_channels_matched or [])|length }} channels are in the catalogue.</p>
+      <a class="btn ghost" href="/auth/youtube?next=/me">Refresh</a>
+    {% else %}
+      <p>Read-only. We match your likes and subscriptions against the catalogue.</p>
+      <a class="btn" href="/auth/youtube?next=/me">Connect YouTube</a>
+    {% endif %}
+  </div>
+  <div class="step{% if user.hist_imported_at %} done{% endif %}">
+    <h2>2. Import watch history</h2>
+    {% if user.hist_imported_at %}<p>{{ user.hist_total }} videos in your history; {{ (user.hist_in_catalog or [])|length }} are HN picks.</p>{% endif %}
+    <p class="fine">At <a href="https://takeout.google.com/" rel="noopener" target="_blank">Google Takeout</a>, deselect all, tick "YouTube and YouTube Music", choose only "history", then upload the watch-history file (or the whole zip).</p>
+    <form method="post" action="/me/import-history" enctype="multipart/form-data" class="upload">
+      <input type="file" name="file" accept=".json,.html,.zip" required>
+      <button class="btn ghost" type="submit">Upload</button>
+    </form>
+  </div>
+</section>
+
+{% if personal %}
+<section class="row">
+  <div class="stat">
+    <div class="big">{{ personal.seen_ess }}<span>/{{ personal.ess_total }}</span></div>
+    <p>Hacker News essentials you've watched. <strong>{{ personal.ess_total - personal.seen_ess }}</strong> to go.</p>
+  </div>
+</section>
+{% if pro %}
+<section class="row"><div class="row-h"><h2>For you</h2></div>{{ grid(personal.feed[:24], reasons=personal.reasons) }}</section>
+<section class="row"><div class="row-h"><h2>Essentials you haven't watched</h2></div>{{ grid(personal.unseen[:48]) }}</section>
+{% else %}
+<section class="row locked">
+  <div class="row-h"><h2>For you</h2></div>
+  {{ grid(personal.feed[:8], blur_after=2, reasons=personal.reasons) }}
+  <div class="unlock"><p>Your feed and the {{ personal.ess_total - personal.seen_ess }} essentials you've missed are ready.</p>
+    <form method="post" action="/pro/checkout"><button class="btn" type="submit">Unlock for {{ PRICE }}</button></form></div>
+</section>
+{% endif %}
+{% endif %}
+
+{% if liked_videos %}<section class="row"><div class="row-h"><h2>Liked</h2></div>{{ grid(liked_videos[:24]) }}</section>{% endif %}
+{% if later_videos %}<section class="row"><div class="row-h"><h2>Watch later</h2></div>{{ grid(later_videos[:24]) }}</section>{% endif %}
+
+{% if NOTES_ON %}
+<section class="row notes-me" id="notes">
+  <div class="row-h"><h2>Your reviews</h2>{% if note_rows %}<a href="/r/{{ handle }}">Your public page</a>{% endif %}</div>
+  {% if hacker == 'approved' %}<p class="note"><strong>Monetisation: on.</strong>{% if pilot and hacker_month %} {{ hacker_month.level.name }} level, {{ hacker_month.spots_left }} of {{ hacker_month.level.spots }} paid spots left this week. Earned in {{ hacker_month.month_name }} so far: {{ money(hacker_month.row.total_cents) }}. Next payment: {{ money(hacker_month.money.payable) }} of {{ money(hacker_month.money.threshold) }}.{% endif %} <a href="/earn" data-from="me">Your earnings</a></p>
+  {% elif hacker == 'applied' %}<p class="note"><strong>Monetisation: under review.</strong> We'll look at your reviews and let you know.</p>
+  {% elif EARN_ON() %}<p class="fine"><a href="/earn" data-from="me">Get monetised</a>: join the Partner Program and get paid for reviews viewers agree with.</p>{% endif %}
+  {% if note_rec and note_rec.notes %}
+  <p class="stats">{{ note_rec.notes }} review{{ '' if note_rec.notes == 1 else 's' }} · {{ note_rec.qualified }} agreed by viewers · {{ note_rec.first }} first to spot it · {{ note_rec.waiting }} waiting for viewers{% if note_rec.agreement is not none %} · {{ (note_rec.agreement * 100)|round|int }}% of viewers agreed{% endif %}</p>
+  {% for r in note_rows %}
+  <blockquote class="hnc">
+    <p class="hnh"><span class="badge">{{ 'Recommends' if r.n.stance == 'rec' else 'Says skip' }}</span> <a href="{{ r.v.url }}">{{ r.v.title }}</a> · {{ r.n.when }}{% if r.n.first %} · <span class="badge first">First to spot it</span>{% endif %}</p>
+    <p>{{ r.n.text }}</p>
+    <p class="fine">{% if r.n.mod == 'pending' %}Waiting for the automatic check.{% elif r.n.mod == 'hidden' %}Held back ({{ r.n.mod_why }}).{% elif r.n.status == 'waiting' %}Waiting for viewers to rate it: {{ r.n.judged }} of {{ panel }} so far.{% else %}{{ r.n.agree }} of {{ panel }} viewers agree.{% endif %}{% if r.n.mod == 'ok' %} Share: <input class="share-link" readonly value="{{ BASE_URL }}{{ r.v.url }}?via={{ handle }}" onclick="this.select()">{% endif %}</p>
+  </blockquote>
+  {% endfor %}
+  {% else %}
+  <p class="fine">After you watch something here, tell the next person whether it was worth it. Your reviews, and how many viewers agree, build your public page.{% if EARN_ON() %} Partners get monetised for theirs: <a href="/earn" data-from="me">see how</a>.{% endif %}</p>
+  {% endif %}
+  <form method="post" action="/me/name" class="name-form">
+    <label>Name shown on your reviews <input name="name" value="{{ rec_name }}" maxlength="30" placeholder="Reviewer {{ handle }}"></label>
+    <button class="btn ghost" type="submit">Save</button>
+  </form>
+  <p class="fine">Leave it empty to show as Reviewer {{ handle }}. We never show your Google name or email.</p>
+  {% if note_rows %}<form method="post" action="/me/delete-notes" onsubmit="return confirm('Delete all your verdicts, reviews and ratings? This cannot be undone.')"><button class="linkish" type="submit">Delete my verdicts, reviews and ratings</button></form>{% endif %}
+</section>
+{% endif %}
+
+<section class="row account">
+  <p>Signed in as {{ user.email }}. <a href="/auth/logout">Sign out</a></p>
+  <form method="post" action="/me/delete-data" onsubmit="return confirm('Delete your YouTube and watch-history data?')"><button class="linkish" type="submit">Delete my YouTube and history data</button></form>
+</section>
+{% endblock %}

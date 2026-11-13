@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="head">
+  <h1>Topics</h1>
+  <p class="lede">Every video sorted into a shared list of topics. Pick one to see what Hacker News recommends most.</p>
+</section>
+{% for a in areas %}
+<section class="area">
+  <h2>{{ a.name }} <span class="count">{{ a.count }}</span></h2>
+  <div class="chips">{% for c in a.cats %}<a class="chip" href="/topics/{{ c.id }}">{{ c.name }} <span>{{ c.vids|length }}</span></a>{% endfor %}</div>
+</section>
+{% endfor %}
+{% endblock %}

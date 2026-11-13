@@ -1,0 +1,36 @@
+{% extends "base.html" %}{% from "_macros.html" import grid %}
+{% block body %}
+<article class="prose">
+  <p class="crumb">Guide</p>
+  <h1>Karpathy's HackerTube, with your own feed</h1>
+  <p class="lede">HackerTube went viral as Andrej Karpathy's weekend hack: Claude filtered 43 million Hacker News comments down to the YouTube videos HN keeps recommending. HackerTube AI is an independent site built on its open data that adds one thing the original left out on purpose: you.</p>
+  <div class="cta-row">
+    <a class="btn" href="/screenshot">Drop a YouTube screenshot</a>
+    <a class="btn ghost" href="/">Browse {{ "{:,}".format(total) }} videos</a>
+  </div>
+
+  <h2>What is HackerTube?</h2>
+  <p>YouTube's recommendations are tuned for watch time. For nearly two decades, Hacker News commenters have done something different: pointed each other at the conference talk that changed how they write software, the lecture that made a subject click, the documentary nobody else knows about. HackerTube collected those recommendations.</p>
+  <p>The method is simple and strict. Every HN comment from 2007 to 2026 was scanned for YouTube links. A video stays only if at least three different people linked it, with real commentary, in at least three different months. Claude read each comment and labelled what the commenter was doing: recommending, citing, joking or criticising. Videos are ranked by how many separate months people recommended them, so lasting recommendations beat one viral spike.</p>
+
+  <h2>What HackerTube AI adds</h2>
+  <ul class="ticks">
+    <li><strong>Sign in with Google</strong> to keep likes and Watch later on every device.</li>
+    <li><strong>Connect YouTube</strong> and we match your likes and subscriptions to the catalogue.</li>
+    <li><strong>Import your watch history</strong> from Google Takeout to hide what you've already seen.</li>
+    <li><strong>The essentials you've missed:</strong> of the 500 most-recommended videos, which ones you've never watched.</li>
+    <li><strong>A feed tuned to you</strong>, still drawn only from videos HN has vouched for.</li>
+  </ul>
+  <p>Browsing, search and topics stay free with no account. Personalisation is a one-time {{ PRICE }}.</p>
+
+  <h2>The HN classics</h2>
+</article>
+{{ grid(classics) }}
+<article class="prose">
+  <h2>Questions</h2>
+  {% for q, a in faq %}
+  <details class="faq"{% if loop.first %} open{% endif %}><summary>{{ q }}</summary><p>{{ a }}{% if 'guide' in a %} <a href="/build-your-own-hackertube">Read the guide.</a>{% endif %}</p></details>
+  {% endfor %}
+  <div class="cta-row"><a class="btn" href="/pro">Get your feed for {{ PRICE }}</a></div>
+</article>
+{% endblock %}

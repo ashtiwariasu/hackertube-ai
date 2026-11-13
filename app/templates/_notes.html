@@ -1,0 +1,13 @@
+<h2>Reviews</h2>
+<p class="stats">{% if rec or skip %}Of the people who watched it here, <strong>{{ rec }}</strong> recommend{{ 's' if rec == 1 else '' }} it and <strong>{{ skip }}</strong> say{{ 's' if skip == 1 else '' }} skip it.{% else %}No verdicts yet.{% endif %}</p>
+{% for n in notes %}
+<blockquote class="hnc note-item{% if n.status == 'qualified' %} st-strong_rec{% elif n.stance == 'skip' %} st-critical{% endif %}">
+  <p class="hnh"><span class="badge">{{ 'Recommends' if n.stance == 'rec' else 'Says skip' }}</span>
+    {% if n.handle %}<a href="/r/{{ n.handle }}">{{ n.name }}</a>{% else %}{{ n.name }}{% endif %} · {{ n.when }}{% if n.first %} · <span class="badge first">First to spot it</span>{% endif %}{% if n.paid %} · <span class="badge paid">Paid partner</span>{% endif %}{% if n.own %} · <span class="badge">Connected to the creator</span>{% endif %}</p>
+  <p>{{ n.text }}</p>
+  {% if n.needs or n.moment_s %}<p class="fine">{% if n.needs %}You need first: {{ n.needs }}.{% endif %}{% if n.moment_s and v %} Worth jumping to <a href="{{ v.url }}?t={{ n.moment }}">{{ n.moment_s }}</a>.{% endif %}</p>{% endif %}
+  <p class="fine">{% if n.mod == 'pending' %}Only you can see this until it has been checked.{% elif n.mod == 'hidden' %}Held back ({{ n.mod_why }}). Only you can see it.{% elif n.status == 'waiting' %}Waiting for viewers to rate it: {{ n.judged }} of {{ panel }} so far.{% else %}{{ n.agree }} of {{ panel }} viewers agree.{% endif %}{% if not n.original %} Close to an earlier review.{% endif %}</p>
+</blockquote>
+{% endfor %}
+{% if not notes %}<p class="fine">No reviews yet. The first one viewers agree with is marked First to spot it.</p>{% endif %}
+{% if pilot %}<p class="fine">Paid partners earn when most viewers who watched agree with their review, whether it recommends the video or not. No one is paid for watching. <a href="/earn" data-from="reviews">How monetisation works</a></p>{% endif %}

@@ -1,0 +1,43 @@
+{% from "_macros.html" import grid %}
+<section class="shot-stats">
+  <div class="tile"><div class="num">{{ r.recognised }}</div><p>videos read{% if r.page in ('history','liked','subscriptions','playlist') %} from your {{ r.page }}{% endif %}</p></div>
+  <div class="tile"><div class="num">{{ r.matched|length }}</div><p>of them are Hacker News favourites</p></div>
+  <div class="tile"><div class="num">{{ r.essentials_seen }}<span>/{{ r.ess_total }}</span></div><p>HN essentials you've already seen</p></div>
+</section>
+{% if r.interests and r.confidence != 'weak' %}<p class="shot-taste">Your taste reads as <strong>{{ r.interests|join(', ') }}</strong>.</p>
+{% elif r.interests %}<p class="shot-taste">What you've been watching sits outside Hacker News's usual territory. The closest HN areas are <strong>{{ r.interests[:3]|join(', ') }}</strong>.</p>{% endif %}
+
+{% if r.matched %}
+<section class="row">
+  <div class="row-h"><h2>You've watched these. Hacker News loves them too.</h2></div>
+  {{ grid(r.matched[:12]) }}
+</section>
+{% else %}
+<section class="row"><p class="empty">None of the videos we read are in HN's catalogue. That's normal: HN's picks are talks, lectures and documentaries, a different diet from most of YouTube. The picks below mix the closest matches to your taste with the classics HN sends everyone to first.</p></section>
+{% endif %}
+
+{% if r.unmatched %}
+<details class="more">
+  <summary>{{ r.unmatched|length }} other video{% if r.unmatched|length != 1 %}s{% endif %} we read that HN hasn't recommended</summary>
+  <ul class="plain">{% for v in r.unmatched[:40] %}<li>{{ v.title }}{% if v.channel %} <span class="dim">· {{ v.channel }}</span>{% endif %}</li>{% endfor %}</ul>
+</details>
+{% endif %}
+
+<section class="row">
+  <div class="row-h"><h2>{% if r.confidence == 'weak' %}Where to start: the all-time classics{% else %}Picked for you from 19 years of HN recommendations{% endif %}</h2></div>
+  {{ grid(r.picks[:12]) }}
+</section>
+
+{% if not user %}
+<section class="pro-band">
+  <div><h2>Keep this</h2><p>Sign in with Google to save these results, add GitHub, Hacker News or YouTube, and get a full feed that hides everything you've already watched.</p></div>
+  <a class="btn" href="/auth/login?next=/connect" data-save-shots>Sign in and save</a>
+</section>
+{% elif not pro %}
+<section class="pro-band">
+  <div><h2>Saved to your profile</h2><p>Your full feed and the {{ r.ess_total - r.essentials_seen }} essentials you've missed are on your Sources page.</p></div>
+  <a class="btn" href="/connect">Open your feed</a>
+</section>
+{% else %}
+<section class="pro-band"><div><h2>Saved</h2><p>Your feed has been updated with this screenshot.</p></div><a class="btn" href="/me">Open your feed</a></section>
+{% endif %}

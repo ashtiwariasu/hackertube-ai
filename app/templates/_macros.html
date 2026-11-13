@@ -1,0 +1,28 @@
+{% macro card(v, blur=false, reason=None) -%}
+<article class="card{% if blur %} blur{% endif %}" data-vid="{{ v.vid }}">
+  <a href="{{ v.url }}{% if v.resume %}?t={{ v.resume }}{% endif %}" class="thumb" tabindex="-1" aria-hidden="true">
+    <img src="https://i.ytimg.com/vi/{{ v.vid }}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+    <img class="frame" src="https://i.ytimg.com/vi/{{ v.vid }}/hq2.jpg" alt="" loading="lazy" width="480" height="360">
+    {% if v.dur_s %}<span class="dur">{{ v.dur_s }}</span>{% endif %}
+    {% if v.pct %}<span class="pbar"><span style="width:{{ v.pct }}%"></span></span>{% endif %}
+  </a>
+  <div class="meta">
+    <h3><a href="{{ v.url }}">{{ v.title }}</a></h3>
+    <p class="sub">{{ v.channel }}</p>
+    {% set sep = namespace(on=false) %}<p class="sub">{% if v.views_s %}{{ v.views_s }} views{% set sep.on = true %}{% endif %}{% if v.badge %}{% if sep.on %} · {% endif %}<span class="hn" title="Distinct people in this community who recommended it">{{ v.badge }}</span>{% set sep.on = true %}{% endif %}{% if v.web %}{% if sep.on %} · {% endif %}<span class="hn web" title="Independent websites that linked it, across {{ v.web.months }} monthly crawl{% if v.web.months != 1 %}s{% endif %} of the open web">{{ v.web.domains }} site{% if v.web.domains != 1 %}s{% endif %}</span>{% set sep.on = true %}{% endif %}{% if v.hn.last_year %}{% if sep.on %} · {% endif %}still recommended {{ v.hn.last_year }}{% endif %}</p>
+    {% if reason %}<p class="reason">{{ reason }}</p>{% endif %}
+  </div>
+  <div class="acts">
+    <button class="act" data-kind="likes" aria-label="Like" title="Like">&#9825;</button>
+    <button class="act" data-kind="later" aria-label="Watch later" title="Watch later">&#9719;</button>
+    <button class="act" data-kind="seen" aria-label="Seen it" title="Seen it">&#10003;</button>
+    <button class="act" data-kind="hidden" aria-label="Not for me" title="Not for me">&#10005;</button>
+  </div>
+</article>
+{%- endmacro %}
+
+{% macro grid(videos, blur_after=None, reasons=None, cls="") -%}
+<div class="grid{% if cls %} {{ cls }}{% endif %}">
+{% for v in videos %}{{ card(v, blur_after is not none and loop.index0 >= blur_after, reasons[v.vid] if reasons else None) }}{% endfor %}
+</div>
+{%- endmacro %}

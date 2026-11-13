@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="head earn-hero week-head">
+  <p class="eyebrow">This week's 10</p>
+  <h1>Videos worth your time this week</h1>
+  <p class="lede">Watch one, then say whether you agree with the reviews. Partners get paid {{ review|replace('.00', '') }} for every review viewers agree with.</p>
+  <div class="earn-stats">
+    <div><strong>{{ left }}</strong><span>paid spots left this week</span></div>
+    <div><strong>{{ money(pot.cents)|replace('.00', '') }}</strong><span>Diamond pot this month</span></div>
+    <div><strong>{{ next_drop.split(',')[0] }}</strong><span>next 10 videos drop</span></div>
+  </div>
+  {% if msg %}<p class="note{% if not ok %} warn{% endif %}">{{ msg }}</p>{% endif %}
+  {% if partner %}
+  <p class="fine">You're <strong>{{ level.name }}</strong>: {{ level.spots }} paid spots a week{% if open_now %}, open now{% else %}, opening {{ opens }}{% endif %}. A claimed spot is yours for {{ hold_hours }} hours; one you don't use is lost for the week. <a href="/earn#spots">Your spots</a></p>
+  {% for c in carried %}<p class="note">Your spot from last week's 10 is still yours until {{ c.until }}: <a href="{{ c.v.url }}#spot">{{ c.v.title }}</a>.</p>{% endfor %}
+  {% elif user %}
+  <p class="earn-cta"><a class="btn" href="/earn" data-from="week">Become a partner to claim paid spots</a></p>
+  {% elif EARN_ON() %}
+  <p class="earn-cta"><a class="btn" href="/earn" data-from="week">See how partners get paid</a></p>
+  {% endif %}
+</section>
+
+<section class="week-list">
+  {% for v in videos %}{% set s = spots[v.vid] %}{% set m = mine.get(v.vid) %}
+  <article class="week-item" id="w-{{ v.vid }}">
+    <a class="wi-thumb" href="{{ v.url }}"><img src="https://i.ytimg.com/vi/{{ v.vid }}/mqdefault.jpg" alt="" loading="lazy" width="320" height="180">{% if v.dur_s %}<span class="dur">{{ v.dur_s }}</span>{% endif %}</a>
+    <div class="wi-body">
+      <h2><a href="{{ v.url }}">{{ v.title }}</a></h2>
+      <p class="sub">{{ v.channel }}{% if v.views_s %} · {{ v.views_s }} views{% endif %}{% if found.get(v.vid) %} · found by {{ found[v.vid] }}{% endif %}</p>
+      <p class="wi-spots"><a class="wi-spot-link" href="{{ v.url }}#spot"><span class="spot-pill{% if not s.paid_left %} gone{% endif %}">{% if s.paid_left %}{{ s.paid_left }} of {{ paid_spots }} paid spots left{% else %}Paid spots taken{% endif %}</span>{% if s.open_left %} <span class="fine">{{ s.open_left }} unpaid spot{{ '' if s.open_left == 1 else 's' }} left</span>{% endif %}</a></p>
+      <div class="wi-act">
+        {% if partner and m == 'held' %}<a class="btn" href="{{ v.url }}#spot">Your spot: write your review</a>
+        {% elif partner and m == 'used' %}<span class="fine">Your paid review is posted.</span>
+        {% elif partner and m == 'gone' %}<span class="fine">You had a spot on this one.</span>
+        {% elif partner and s.paid_left and open_now %}
+        <form method="post" action="/week/claim"><input type="hidden" name="vid" value="{{ v.vid }}"><input type="hidden" name="next" value="/week"><button class="btn" type="submit">Claim a paid spot</button></form>
+        {% else %}<a class="btn ghost" href="{{ v.url }}">Watch and rate the reviews</a>{% endif %}
+      </div>
+    </div>
+  </article>
+  {% endfor %}
+</section>
+<p class="fine">Reviews stay hidden until you've given your own verdict, so nobody steers you. Ratings come from signed-in viewers who watched a few minutes here and aren't partners; nobody is paid for watching or rating. <a href="/terms#partners">How it works</a></p>
+{% endblock %}

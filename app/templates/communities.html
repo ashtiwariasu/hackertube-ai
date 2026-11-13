@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="head">
+  <h1>Communities</h1>
+  <p class="lede">Every video here was recommended by at least 3 different people in one community, in at least 3 different months. Pick a community to see what it keeps sending people to.{% if comms|selectattr("id", "equalto", "web")|list %} The open web counts independent websites that linked a video across monthly crawls instead of people.{% endif %}</p>
+</section>
+<div class="chips">{% for c in comms %}<a class="chip" href="/c/{{ c.slug }}">{{ c.label }} <span>{{ c.vids|length }}</span></a>{% endfor %}</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block body %}
+<section class="head">
+  <h1>Submit a video</h1>
+  <p class="lede">Found a great video that isn't listed? Add it with your review. It joins the catalogue once viewers agree with a review of it.</p>
+</section>
+{% if not user %}
+<section class="card-box">
+  <p>Sign in to submit a video. Submissions come with a review, and your reviews build your public page.</p>
+  <a class="btn" href="/auth/login?next=/submit">Sign in</a>
+</section>
+{% else %}
+<form method="get" action="/submit" class="earn-cta">
+  <input name="url" value="{{ url }}" placeholder="Paste a YouTube link" aria-label="YouTube link" required maxlength="300">
+  <button class="btn{% if video %} ghost{% endif %}" type="submit">Look it up</button>
+</form>
+{% if error %}<p class="nb-err">{{ error }}</p>{% endif %}
+{% if listed %}<p class="note">It's already here: <a href="{{ listed.url }}">{{ listed.title }}</a>. Review it on its page.</p>{% endif %}
+{% if video %}
+<section class="card-box">
+  <div class="sp-row">
+    <img src="https://i.ytimg.com/vi/{{ video.vid }}/mqdefault.jpg" alt="" width="320" height="180">
+    <div>
+      <h2>{{ video.title }}</h2>
+      <p class="sub">{{ video.channel }} · {{ video.views_s }} views · {{ video.dur_s }}{% if video.published %} · {{ video.published[:4] }}{% endif %}</p>
+      {% if video.topic_name %}<p class="fine">Topic: {{ video.topic_name }}.{% if video.finder %} If viewers vouch for it and it's picked for a weekly 10, you earn a {{ finder_fee|replace('.00', '') }} finder fee.{% endif %}</p>{% endif %}
+      {% if video.own_channel %}<p class="fine">This is from your own channel, so your review is labelled and it can't earn a finder fee.</p>{% endif %}
+    </div>
+  </div>
+  <form method="post" action="/submit" class="sub-form">
+    <input type="hidden" name="url" value="{{ url }}">
+    <h2>Your review</h2>
+    <p class="nb-row"><label><input type="radio" name="stance" value="rec"{% if form.stance != 'skip' %} checked{% endif %}> Worth watching</label><label><input type="radio" name="stance" value="skip"{% if form.stance == 'skip' %} checked{% endif %}> One to skip</label></p>
+    <label class="nb-label" for="sub-text">Who is it for, and why? Or who should skip it, and why?</label>
+    <textarea id="sub-text" name="text" maxlength="300" rows="3" required>{{ form.text or '' }}</textarea>
+    <label class="nb-label" for="sub-needs">What do you need to know first? (optional)</label>
+    <input id="sub-needs" name="needs" class="nb-input" maxlength="150" value="{{ form.needs or '' }}">
+    <label class="nb-label" for="sub-moment">The moment worth jumping to (optional, like 12:40)</label>
+    <input id="sub-moment" name="moment" class="nb-input nb-short" maxlength="8" inputmode="numeric" value="{{ form.moment or '' }}">
+    <p><label class="fine"><input type="checkbox" name="seen" value="1" required> I have watched this video</label></p>
+    <p><label class="fine"><input type="checkbox" name="own" value="1"{% if form.own or video.own_channel %} checked{% endif %}> I made this video, or I'm connected to its creator or was paid to promote it</label></p>
+    <div class="nb-row"><button class="btn" type="submit">Submit with my review</button></div>
+    <p class="fine">It gets its own page now and shows under New finds. Once at least {{ qualify }} of its first {{ panel }} viewers agree with a review of it, it joins the catalogue.{% if partner %} The review you submit with it is unpaid. If it's picked for a weekly 10 you earn a {{ finder_fee|replace('.00', '') }} finder fee, never for a video you're connected to.{% endif %}</p>
+  </form>
+</section>
+{% endif %}
+{% endif %}
+<p class="fine">Public videos only, at least {{ min_mins }} minutes long, that their owners let play on other sites. No Shorts, live streams or age-restricted videos. <a href="/terms#submitting">Rules</a></p>
+<script>
+window.addEventListener("load", function () {
+  if (!window.htTrack) return;
+  {% if video %}htTrack("submit_lookup", { result: "ok", finder: {{ 'true' if video.finder else 'false' }} });{% elif listed %}htTrack("submit_lookup", { result: "listed" });{% elif error %}htTrack("submit_lookup", { result: "error" });{% endif %}
+  var f = document.querySelector(".sub-form");
+  if (f) f.addEventListener("submit", function () { htTrack("submit_posted", {}); });
+});
+</script>
+{% endblock %}

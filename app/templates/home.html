@@ -1,0 +1,102 @@
+{% extends "base.html" %}{% from "_macros.html" import grid %}
+{% block body %}
+{% if personal and pro %}
+<section class="row">
+  <div class="row-h"><h2>For you</h2><a href="/me">You've seen {{ personal.seen_ess }} of {{ personal.ess_total }} HN essentials</a></div>
+  {{ grid(personal.feed[:12], reasons=personal.reasons) }}
+</section>
+{% elif personal %}
+<section class="row">
+  <div class="row-h"><h2>Picked for you</h2><a href="/me">You've seen {{ personal.seen_ess }} of {{ personal.ess_total }} HN essentials</a></div>
+  <p class="row-sub">From what you've watched, marked and told us. <a href="/pro">Pro</a> keeps the full row and the essentials you haven't seen.</p>
+  {{ grid(personal.feed[:8], reasons=personal.reasons) }}
+</section>
+{% endif %}
+
+<section class="hero home-hero">
+  <h1>What should you watch next?</h1>
+  <p class="lede">{{ "{:,}".format(total) }} talks, lectures and explainers, ranked by how many people and websites keep recommending them. Start with one.</p>
+  {% if week and EARN_ON() %}<p class="hero-earn"><a href="/earn" data-from="home-hero">Get monetised for your reviews</a>: {{ money(review_cents)|replace('.00', '') }} for every review viewers agree with, and a {{ money(pot_cents)|replace('.00', '') }} Diamond pot this month.</p>{% endif %}
+</section>
+
+{% if starter %}
+<section class="row start-row" data-row="starter">
+  {{ grid(starter, reasons=starter_proof, cls="starter") }}
+</section>
+{% endif %}
+<div id="because"></div>
+
+{% if week and week_videos %}
+<section class="row week-row" data-row="week">
+  <div class="row-h"><h2>This week's 10</h2><a href="/week">See all</a></div>
+  {% if EARN_ON() %}<p class="row-sub earn-band"><strong>Partners get paid {{ money(review_cents)|replace('.00', '') }} for every review viewers agree with.</strong> {{ week_left }} paid spot{{ '' if week_left == 1 else 's' }} left this week. <a href="/week" data-from="home-week">Claim one</a> or watch and rate the reviews.</p>{% endif %}
+  {{ grid(week_videos) }}
+</section>
+{% endif %}
+
+<section class="row paste-row" id="paste">
+  <div class="row-h"><h2>Or get picks for you</h2></div>
+  <form class="anybox" id="anybox">
+    <div class="anybox-in">
+      <textarea id="anytext" rows="1" placeholder="Paste a YouTube link, your GitHub, a screenshot of your history, or just “compilers and sourdough”" aria-label="Paste anything about you"></textarea>
+      <div class="any-previews" id="anyprev"></div>
+    </div>
+    <div class="anybox-actions">
+      <button class="btn ghost" type="button" id="anyfile">Add a screenshot</button>
+      <button class="btn" type="submit" id="anygo" disabled>Show me</button>
+      <input type="file" id="anyinput" accept="image/png,image/jpeg,image/webp" multiple hidden>
+    </div>
+  </form>
+  <p class="src-err" id="anyerr" hidden></p>
+  <p class="fine">Works with links, profiles, screenshots of your history, or a few words. Nothing is stored until you choose to keep it. <a href="/privacy">What we keep</a>.</p>
+</section>
+
+<div class="progress" id="anyprog" hidden><div class="spinner" aria-hidden="true"></div><p id="anyprogtext">Reading that…</p></div>
+<div id="anyresults" aria-live="polite"></div>
+<div id="continue" data-row="continue">{% if continue %}{% with videos=continue %}{% include "_continue.html" %}{% endwith %}{% endif %}</div>
+
+<section class="row chips-row" id="chips">
+  <div class="row-h"><h2>Or just tap what you're into</h2><span class="row-n" id="scope-why">{% if scope_why %}Showing {{ scope_label }} {{ scope_why }}{% endif %}</span></div>
+  <div class="chips">{% for c in chips %}<button type="button" class="chip chip-btn{% if c.id in scope_areas %} on{% endif %}" data-area="{{ c.id }}">{{ c.label }}</button>{% endfor %}</div>
+</section>
+
+<div id="feed" data-row="feed">{% include "_feed_rows.html" %}</div>
+
+{% if new_finds %}
+<section class="row" data-row="new-finds">
+  <div class="row-h"><h2>New finds</h2><a href="/submit">Submit a video</a></div>
+  {{ grid(new_finds) }}
+</section>
+{% endif %}
+{% if waiting %}
+<section class="row" data-row="waiting">
+  <div class="row-h"><h2>Partners reviewed these</h2><span class="row-n">Watch one and say if you agree with the review</span></div>
+  {{ grid(waiting) }}
+</section>
+{% endif %}
+<section class="row" data-row="classics">
+  <div class="row-h"><h2>All-time classics</h2><a href="/best">See all</a></div>
+  {{ grid(classics) }}
+</section>
+{% if communities|length > 1 %}
+<section class="row">
+  <div class="row-h"><h2>Browse by community</h2></div>
+  <p class="row-sub">Each video qualifies only when 3 different people in that community recommended it in 3 different months.</p>
+  <div class="chips">{% for c in communities[:16] %}<a class="chip" href="/c/{{ c.slug }}">{{ c.label }} <span>{{ c.vids|length }}</span></a>{% endfor %}<a class="chip" href="/communities">All {{ communities|length }} communities</a></div>
+</section>
+{% endif %}
+<section class="row">
+  <div class="row-h"><h2>Browse by topic</h2><a href="/topics">All topics</a></div>
+  <div class="chips">{% for a in areas %}{% for c in a.cats[:3] %}<a class="chip" href="/topics/{{ c.id }}">{{ c.name }} <span>{{ c.vids|length }}</span></a>{% endfor %}{% endfor %}</div>
+</section>
+{% if not pro %}
+<section class="pro-band">
+  <div>
+    <h2>Your own HackerTube for {{ PRICE }}</h2>
+    <p>Keep your profile, hide what you've already watched, and see which of the 500 essentials you've missed. One-time payment, no subscription.</p>
+  </div>
+  <a class="btn" href="/pro">Get Pro</a>
+</section>
+{% endif %}
+<script src="/static/home.js?v=4" defer></script>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% from "_macros.html" import grid %}
+{% if personal %}
+  {% if pro %}
+  <section class="row"><div class="row-h"><h2>For you</h2><a href="/me">Your page</a></div>{{ grid(personal.feed[:24], reasons=personal.reasons) }}</section>
+  <section class="row"><div class="row-h"><h2>Essentials you haven't watched</h2></div>{{ grid(personal.unseen[:24]) }}</section>
+  {% else %}
+  <section class="row locked">
+    <div class="row-h"><h2>For you</h2></div>
+    {{ grid(personal.feed[:8], blur_after=2, reasons=personal.reasons) }}
+    <div class="unlock"><p>Your feed and the {{ personal.ess_total - personal.seen_ess }} essentials you've missed are ready.</p>
+      <form method="post" action="/pro/checkout"><button class="btn" type="submit">Unlock for {{ PRICE }}</button></form></div>
+  </section>
+  {% endif %}
+{% else %}
+  <section class="row"><p class="empty">Your feed appears here as soon as one source is connected.</p></section>
+{% endif %}
